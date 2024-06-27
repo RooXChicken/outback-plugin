@@ -7,3 +7,7 @@ commands:
    resetcooldown:
       description: Resets the cooldown
       usage: /resetcooldown
+   printname:
+      description: Prints the current item name
+      usage: /printname
+      

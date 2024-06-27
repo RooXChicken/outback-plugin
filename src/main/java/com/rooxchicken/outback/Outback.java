@@ -15,7 +15,12 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.rooxchicken.outback.Commands.PrintHeldItemCommand;
 import com.rooxchicken.outback.Commands.ResetCooldown;
+import com.rooxchicken.outback.Stones.Possum;
+import com.rooxchicken.outback.Stones.SugarGlider;
+import com.rooxchicken.outback.Tasks.DisplayInformation;
 import com.rooxchicken.outback.Tasks.Task;
 
 public class Outback extends JavaPlugin implements Listener
@@ -25,18 +30,26 @@ public class Outback extends JavaPlugin implements Listener
     public static ArrayList<Task> tasks;
     private List<String> blockedCommands = new ArrayList<>();
 
+    private SugarGlider sugarGlider;
+    private Possum possum;
+
     @Override
     public void onEnable()
     {
         Bukkit.resetRecipes();
-        //ProtocolLibrary.getProtocolManager().removePacketListeners(this);
 
         tasks = new ArrayList<Task>();
+        tasks.add(new DisplayInformation(this));
+
+        sugarGlider = new SugarGlider(this);
+        possum = new Possum(this);
     
         essenceKey = new NamespacedKey(this, "essence");
         
         getServer().getPluginManager().registerEvents(this, this);
+
         this.getCommand("resetcooldown").setExecutor(new ResetCooldown(this));
+        this.getCommand("printname").setExecutor(new PrintHeldItemCommand(this));
 
         getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable()
         {
@@ -67,7 +80,7 @@ public class Outback extends JavaPlugin implements Listener
         for(Player player : Bukkit.getOnlinePlayers())
             checkHasEssence(player);
 
-        getLogger().info("Orbiting since 1987 (made by roo)");
+        getLogger().info("Up to 1987 Australian animals! (made by roo)");
     }
 
     @EventHandler
