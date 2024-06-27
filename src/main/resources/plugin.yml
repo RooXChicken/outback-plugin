@@ -10,4 +10,7 @@ commands:
    printname:
       description: Prints the current item name
       usage: /printname
+   giveitems:
+      description: Gives all of the custom items
+      usage: /giveitems
       

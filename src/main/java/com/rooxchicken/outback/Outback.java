@@ -20,8 +20,10 @@ import com.rooxchicken.outback.Commands.PrintHeldItemCommand;
 import com.rooxchicken.outback.Commands.ResetCooldown;
 import com.rooxchicken.outback.Stones.Koala;
 import com.rooxchicken.outback.Stones.Possum;
+import com.rooxchicken.outback.Stones.Quokka;
 import com.rooxchicken.outback.Stones.Stone;
 import com.rooxchicken.outback.Stones.SugarGlider;
+import com.rooxchicken.outback.Stones.TasmanianDevil;
 import com.rooxchicken.outback.Tasks.DisplayInformation;
 import com.rooxchicken.outback.Tasks.Task;
 
@@ -34,6 +36,8 @@ public class Outback extends JavaPlugin implements Listener
     private SugarGlider sugarGlider;
     private Possum possum;
     private Koala koala;
+    private TasmanianDevil tasmanianDevil;
+    private Quokka quokka;
 
     @Override
     public void onEnable()
@@ -46,6 +50,8 @@ public class Outback extends JavaPlugin implements Listener
         sugarGlider = new SugarGlider(this);
         possum = new Possum(this);
         koala = new Koala(this);
+        tasmanianDevil = new TasmanianDevil(this);
+        quokka = new Quokka(this);
     
         essenceKey = new NamespacedKey(this, "essence");
         
@@ -93,6 +99,8 @@ public class Outback extends JavaPlugin implements Listener
             case "§x§F§F§6§E§0§D§lSugar Glider": return sugarGlider;
             case "§x§F§F§D§D§0§0§lPossum": return possum;
             case "§x§2§E§2§E§2§E§lKoala": return koala;
+            case "§x§0§0§B§B§F§F§lTasmanian Devil": return tasmanianDevil;
+            case "§x§F§F§8§6§8§2§lQuokka": return quokka;
         }
 
         return null;

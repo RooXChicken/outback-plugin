@@ -1,0 +1,114 @@
+package com.rooxchicken.outback.Stones;
+
+import java.util.ArrayList;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import com.rooxchicken.outback.Library;
+import com.rooxchicken.outback.Outback;
+import com.rooxchicken.outback.Tasks.DisplayInformation;
+import com.rooxchicken.outback.Tasks.LurkTask;
+import com.rooxchicken.outback.Tasks.ScreechTask;
+import com.rooxchicken.outback.Tasks.SwipeTask;
+import com.rooxchicken.outback.Tasks.TorporTask;
+import com.rooxchicken.outback.Tasks.ViciousTask;
+
+public class TasmanianDevil extends Stone
+{
+    private Outback plugin;
+
+    public TasmanianDevil(Outback _plugin)
+    {
+        super(_plugin);
+        plugin = _plugin;
+
+        name = "Screech";
+        itemName = "§x§0§0§B§B§F§F§lTasmanian Devil";
+
+        cooldownKey = new NamespacedKey(plugin, "tasmaniandevil");
+        cooldownMax = 60*20;
+    }
+
+    @Override
+    public void tick()
+    {
+        
+    }
+
+    @EventHandler
+    public void vicious(EntityDamageByEntityEvent event)
+    {
+        if(!(event.getDamager() instanceof Player && event.getEntity() instanceof Player))
+            return;
+
+        Player entity = (Player)event.getEntity();
+        Player damager = (Player)event.getDamager();
+
+        for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
+        {
+            if(checkItem(item)/* && getEssence(item) >= 2 */) //ESSENCECHECK
+            {
+                if(Math.random() < 0.2)
+                {
+                    Outback.tasks.add(new ViciousTask(plugin, entity));
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    private void screech(PlayerSwapHandItemsEvent event)
+    {
+        Player player = event.getPlayer();
+        ItemStack item = event.getOffHandItem();
+
+        if(!player.isSneaking())
+            return;
+
+        if(checkItem(item) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        {
+            Outback.tasks.add(new ScreechTask(plugin, player));
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void carnivore(EntityDamageByEntityEvent event)
+    {
+        if(!(event.getDamager() instanceof Player && event.getEntity() instanceof Player))
+            return;
+
+        Entity entity = event.getEntity();
+        Player damager = (Player)event.getDamager();
+
+        for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
+        {
+            if(checkItem(item)/* && getEssence(item) >= 10 */) //ESSENCECHECK
+            {
+                event.setDamage(event.getDamage() + 3);
+                damager.setHealth(damager.getHealth() + (event.getFinalDamage() * 0.4));
+                damager.getWorld().spawnParticle(Particle.BLOCK_DUST, damager.getLocation().clone().add(0,1,0 ), 20, Material.REDSTONE_BLOCK.createBlockData());
+
+            }
+        }
+    }
+}

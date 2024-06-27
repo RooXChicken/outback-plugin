@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -62,27 +63,28 @@ public class Possum extends Stone
         {
             if(checkItem(item)/* && getEssence(item) >= 2 */) //ESSENCECHECK
             {
-                if(Math.random() < 0.05)
+                if(Math.random() < 1)
                 {
                     Inventory inv = entity.getInventory();
                     if(inv.isEmpty())
                         return;
 
                     ArrayList<Integer> slots = new ArrayList<Integer>();
-                    int index = 0;
-                    for(int i = 0; i < inv.getSize(); i++)
-                    {
+
+                    for(int i = 0; i < 36; i++)
                         if(inv.getItem(i) != null)
-                        {
                             slots.add(i);
-                            index++;
-                        }
-                    }
+                    
+                    if(slots.size() < 1)
+                        return;
                     
                     int randomItemIndex = (int)(Math.random() * slots.size());
                     ItemStack randomItem = inv.getItem(slots.get(randomItemIndex));
-                    inv.clear(randomItemIndex);
+                    inv.removeItem(randomItem);
                     entity.getWorld().dropItem(entity.getLocation(), randomItem);
+
+                    entity.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation().clone().add(0, 1, 0), 40, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.YELLOW, 1f));
+                    entity.getWorld().playSound(entity.getLocation(), Sound.ITEM_HOE_TILL, 1, 1);
                 }
             }
         }
