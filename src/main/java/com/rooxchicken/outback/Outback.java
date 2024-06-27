@@ -18,7 +18,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.rooxchicken.outback.Commands.PrintHeldItemCommand;
 import com.rooxchicken.outback.Commands.ResetCooldown;
+import com.rooxchicken.outback.Stones.Koala;
 import com.rooxchicken.outback.Stones.Possum;
+import com.rooxchicken.outback.Stones.Stone;
 import com.rooxchicken.outback.Stones.SugarGlider;
 import com.rooxchicken.outback.Tasks.DisplayInformation;
 import com.rooxchicken.outback.Tasks.Task;
@@ -28,10 +30,10 @@ public class Outback extends JavaPlugin implements Listener
     public static NamespacedKey essenceKey;
 
     public static ArrayList<Task> tasks;
-    private List<String> blockedCommands = new ArrayList<>();
 
     private SugarGlider sugarGlider;
     private Possum possum;
+    private Koala koala;
 
     @Override
     public void onEnable()
@@ -43,6 +45,7 @@ public class Outback extends JavaPlugin implements Listener
 
         sugarGlider = new SugarGlider(this);
         possum = new Possum(this);
+        koala = new Koala(this);
     
         essenceKey = new NamespacedKey(this, "essence");
         
@@ -78,15 +81,27 @@ public class Outback extends JavaPlugin implements Listener
         }, 0, 1);
 
         for(Player player : Bukkit.getOnlinePlayers())
-            checkHasEssence(player);
+            checkEssenceExists(player);
 
         getLogger().info("Up to 1987 Australian animals! (made by roo)");
     }
 
-    @EventHandler
-    public void addPlayerOrbit(PlayerJoinEvent event)
+    public Stone getStoneFromName(String name)
     {
-        checkHasEssence(event.getPlayer());
+        switch(name)
+        {
+            case "§x§F§F§6§E§0§D§lSugar Glider": return sugarGlider;
+            case "§x§F§F§D§D§0§0§lPossum": return possum;
+            case "§x§2§E§2§E§2§E§lKoala": return koala;
+        }
+
+        return null;
+    }
+
+    @EventHandler
+    public void checkHasEssence(PlayerJoinEvent event)
+    {
+        checkEssenceExists(event.getPlayer());
     }
 
     @EventHandler
@@ -96,19 +111,40 @@ public class Outback extends JavaPlugin implements Listener
         Entity killer = event.getEntity().getKiller();
         if(killer != null)
         {
-            //killer.getPersistentDataContainer().set(killsKey, PersistentDataType.INTEGER, killer.getPersistentDataContainer().get(killsKey, PersistentDataType.INTEGER) + 1);
+            PersistentDataContainer playerData = player.getPersistentDataContainer();
+            PersistentDataContainer killerData = killer.getPersistentDataContainer();
+            int killerEssence = killerData.get(essenceKey, PersistentDataType.INTEGER);
+            int playerEssence = playerData.get(essenceKey, PersistentDataType.INTEGER);
+
+            if(playerEssence == 0)
+                return;
+
+            if(Math.random() <= 0.45)
+                playerEssence -= 1;
+            else if(Math.random() <= 0.80)
+                playerEssence -= 2;
+            else if(Math.random() <= 1)
+                playerEssence -= 3;
+
+            if(Math.random() <= 0.40)
+                killerEssence += 1;
+            else if(Math.random() <= 0.75)
+                killerEssence += 2;
+            else if(Math.random() <= 1)
+                killerEssence += 3;
+
+            playerEssence = Math.max(playerEssence, 0);
+            killerEssence = Math.min(killerEssence, 20);
+
+            playerData.set(essenceKey, PersistentDataType.INTEGER, playerEssence);
+            killerData.set(essenceKey, PersistentDataType.INTEGER, killerEssence);
         }
     }
 
-    @EventHandler
-	private void onPlayerTab(PlayerCommandSendEvent e)
-    {
-		e.getCommands().removeAll(blockedCommands);
-	}
-
-    private void checkHasEssence(Player player)
+    private void checkEssenceExists(Player player)
     {
         PersistentDataContainer data = player.getPersistentDataContainer();
+
         if(!data.has(essenceKey, PersistentDataType.INTEGER))
             data.set(essenceKey, PersistentDataType.INTEGER, 0);
     }

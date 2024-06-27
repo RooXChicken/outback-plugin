@@ -34,6 +34,27 @@ public class Library
             return null;
     }
 
+    public static Location getTargetLocation(Player player, int range)
+    {
+        Predicate<Entity> p = new Predicate<Entity>() {
+
+            @Override
+            public boolean apply(Entity input)
+            {
+                return(input != player);
+            }
+            
+        };
+        RayTraceResult ray = player.getWorld().rayTrace(player.getEyeLocation(), player.getLocation().getDirection(), range, FluidCollisionMode.NEVER, true, 0.2, p);
+        
+        if(ray != null && ray.getHitEntity() != null)
+            return ray.getHitEntity().getLocation().clone().add(0, 1, 0);
+        else if(ray != null && ray.getHitBlock() != null)
+            return ray.getHitBlock().getLocation().clone().add(0.5, 1, 0.5);
+        else
+            return null;
+    }
+
     public static Block getBlock(Player player, int range)
     {
         return getBlock(player, range, player.getLocation().getPitch());

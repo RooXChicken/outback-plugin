@@ -16,23 +16,47 @@ import com.rooxchicken.outback.Outback;
 public abstract class Stone implements Listener
 {
     private Outback plugin;
+    public String name;
     public String itemName;
 
-    public NamespacedKey cooldown1Key;
-    public NamespacedKey cooldown2Key;
-    public NamespacedKey cooldown3Key;
+    public NamespacedKey cooldownKey;
 
-    public int cooldown1Max;
-    public int cooldown2Max;
-    public int cooldown3Max;
+    public int cooldownMax;
 
     public Stone(Outback _plugin)
     {
         plugin = _plugin;
+        name = "Stone";
+        itemName = "§x§2§E§2§E§2§E§lStone";
+
         Bukkit.getServer().getPluginManager().registerEvents(this, _plugin);
     }
 
     public void tick() {}
+
+    public String tickCooldown(Player player, ItemStack item)
+    {
+        playerTickLogic(player, item);
+        checkHasCooldown(player, cooldownKey);
+        PersistentDataContainer data = player.getPersistentDataContainer();
+
+        int cooldown = data.get(cooldownKey, PersistentDataType.INTEGER) - 1;
+        data.set(cooldownKey, PersistentDataType.INTEGER, cooldown);
+
+        if(cooldown > 0)
+            return itemName + ": " + cooldown/20 + "s";
+        
+        return "";
+    }
+
+    public void resetCooldown(Player player)
+    {
+        PersistentDataContainer data = player.getPersistentDataContainer();
+
+        data.set(cooldownKey, PersistentDataType.INTEGER, 0);
+    }
+
+    public void playerTickLogic(Player player, ItemStack item) {}
 
     public int getEssence(ItemStack item)
     {
@@ -64,7 +88,7 @@ public abstract class Stone implements Listener
         if(!data.has(key, PersistentDataType.INTEGER))
             data.set(key, PersistentDataType.INTEGER, 0);
 
-        if(data.get(key, PersistentDataType.INTEGER) == 0)
+        if(data.get(key, PersistentDataType.INTEGER) <= 0)
         {
             data.set(key, PersistentDataType.INTEGER, cooldown);
             return true;
@@ -82,20 +106,12 @@ public abstract class Stone implements Listener
         return (data.get(key, PersistentDataType.INTEGER) == 0);
     }
 
-    public void checkHasCooldown(Player player, NamespacedKey cd1, NamespacedKey cd2, NamespacedKey cd3)
+    public void checkHasCooldown(Player player, NamespacedKey cd)
     {
         PersistentDataContainer data = player.getPersistentDataContainer();
 
-        if(cd1 != null)
-        if(!data.has(cd1, PersistentDataType.INTEGER))
-            data.set(cd1, PersistentDataType.INTEGER, 0);
-
-        if(cd2 != null)
-        if(!data.has(cd2, PersistentDataType.INTEGER))
-            data.set(cd2, PersistentDataType.INTEGER, 0);
-
-        if(cd3 != null)
-        if(!data.has(cd3, PersistentDataType.INTEGER))
-            data.set(cd3, PersistentDataType.INTEGER, 0);
+        if(cd != null)
+        if(!data.has(cd, PersistentDataType.INTEGER))
+            data.set(cd, PersistentDataType.INTEGER, 0);
     }
 }

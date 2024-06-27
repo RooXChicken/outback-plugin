@@ -1,7 +1,5 @@
 package com.rooxchicken.outback.Commands;
 
-import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -14,13 +12,12 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import com.rooxchicken.outback.Outback;
-import com.rooxchicken.outback.Stones.Stone;
 
-public class ResetCooldown implements CommandExecutor
+public class SetEssence implements CommandExecutor
 {
     private Outback plugin;
 
-    public ResetCooldown(Outback _plugin)
+    public SetEssence(Outback _plugin)
     {
         plugin = _plugin;
     }
@@ -31,14 +28,9 @@ public class ResetCooldown implements CommandExecutor
         if(sender.isOp())
         {
             Player player = Bukkit.getPlayer(sender.getName());
-            for(ItemStack item : player.getInventory())
-            {
-                if(item != null && item.hasItemMeta())
-                {
-                    Stone stone = plugin.getStoneFromName(item.getItemMeta().getDisplayName());
-                    if(stone != null) stone.resetCooldown(player);
-                }
-            }
+            PersistentDataContainer data = player.getPersistentDataContainer();
+            
+            data.set(Outback.essenceKey, PersistentDataType.INTEGER, Integer.parseInt(args[0]));
         }
 
         return true;
