@@ -120,7 +120,9 @@ public class TasmanianDevil extends Stone
             if(checkItem(item, itemName)/* && getEssence(item) >= 10 */) //ESSENCECHECK
             {
                 event.setDamage(event.getDamage() + 3);
-                damager.setHealth(damager.getHealth() + (event.getFinalDamage() * 0.4));
+                double hp = damager.getHealth() + (event.getFinalDamage() * 0.4);
+                hp = Math.min(20, hp);
+                damager.setHealth(hp);
                 damager.getWorld().spawnParticle(Particle.BLOCK_DUST, damager.getLocation().clone().add(0,1,0 ), 20, Material.REDSTONE_BLOCK.createBlockData());
 
             }
