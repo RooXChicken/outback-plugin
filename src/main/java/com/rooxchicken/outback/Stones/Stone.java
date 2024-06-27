@@ -17,7 +17,7 @@ public abstract class Stone implements Listener
 {
     private Outback plugin;
     public String name;
-    public String itemName;
+    public static String itemName = "§x§2§E§2§E§2§E§lStone";
 
     public NamespacedKey cooldownKey;
 
@@ -27,14 +27,13 @@ public abstract class Stone implements Listener
     {
         plugin = _plugin;
         name = "Stone";
-        itemName = "§x§2§E§2§E§2§E§lStone";
 
         Bukkit.getServer().getPluginManager().registerEvents(this, _plugin);
     }
 
     public void tick() {}
 
-    public String tickCooldown(Player player, ItemStack item)
+    public String tickCooldown(Player player, ItemStack item, String name)
     {
         playerTickLogic(player, item);
         checkHasCooldown(player, cooldownKey);
@@ -44,7 +43,7 @@ public abstract class Stone implements Listener
         data.set(cooldownKey, PersistentDataType.INTEGER, cooldown);
 
         if(cooldown > 0)
-            return itemName + ": " + cooldown/20 + "s";
+            return name + ": " + cooldown/20 + "s";
         
         return "";
     }
@@ -77,9 +76,9 @@ public abstract class Stone implements Listener
         lore.add("Essence: " + essence);
     }
 
-    public boolean checkItem(ItemStack item)
+    public boolean checkItem(ItemStack item, String name)
     {
-        return (item != null && item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(itemName));
+        return (item != null && item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(name));
     }
 
     public boolean checkCooldown(Player player, NamespacedKey key, int cooldown)

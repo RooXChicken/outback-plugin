@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import com.rooxchicken.outback.Library;
 import com.rooxchicken.outback.Outback;
 import com.rooxchicken.outback.Stones.Stone;
 
@@ -45,7 +46,7 @@ public class DisplayInformation extends Task
                     Stone stone = plugin.getStoneFromName(item.getItemMeta().getDisplayName());
                     if(stone != null)
                     {
-                        String stoneTxt = stone.tickCooldown(player, item);
+                        String stoneTxt = stone.tickCooldown(player, item, plugin.getAbilityFromName(item.getItemMeta().getDisplayName()));
                         if(!stoneTxt.equals("") && !display.equals(""))
                             display += ChatColor.WHITE + " | ";
                         display += stoneTxt;

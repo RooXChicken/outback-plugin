@@ -35,13 +35,15 @@ public class Quokka extends Stone
 {
     private Outback plugin;
 
+    public static String itemName = "§x§F§F§8§6§8§2§lQuokka";
+
     public Quokka(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "Spiky Shelter";
-        itemName = "§x§F§F§8§6§8§2§lQuokka";
+        name = "§x§F§F§8§6§8§2§lSpiky Shelter";
+        
 
         cooldownKey = new NamespacedKey(plugin, "quokka");
         cooldownMax = 45*20;
@@ -81,7 +83,7 @@ public class Quokka extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item)/* && getEssence(item) >= 2 */) //ESSENCECHECK
+            if(checkItem(item, itemName)/* && getEssence(item) >= 2 */) //ESSENCECHECK
             {
                 if(!damager.isOnGround())
                 {
@@ -101,7 +103,7 @@ public class Quokka extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
         {
             Outback.tasks.add(new SpikyShelterTask(plugin, player));
             event.setCancelled(true);

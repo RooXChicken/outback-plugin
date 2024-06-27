@@ -16,8 +16,10 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.rooxchicken.outback.Commands.GiveItems;
 import com.rooxchicken.outback.Commands.PrintHeldItemCommand;
 import com.rooxchicken.outback.Commands.ResetCooldown;
+import com.rooxchicken.outback.Stones.GreatWhiteShark;
 import com.rooxchicken.outback.Stones.Koala;
 import com.rooxchicken.outback.Stones.Possum;
 import com.rooxchicken.outback.Stones.Quokka;
@@ -38,6 +40,7 @@ public class Outback extends JavaPlugin implements Listener
     private Koala koala;
     private TasmanianDevil tasmanianDevil;
     private Quokka quokka;
+    private GreatWhiteShark greatWhiteShark;
 
     @Override
     public void onEnable()
@@ -52,6 +55,7 @@ public class Outback extends JavaPlugin implements Listener
         koala = new Koala(this);
         tasmanianDevil = new TasmanianDevil(this);
         quokka = new Quokka(this);
+        greatWhiteShark = new GreatWhiteShark(this);
     
         essenceKey = new NamespacedKey(this, "essence");
         
@@ -59,6 +63,7 @@ public class Outback extends JavaPlugin implements Listener
 
         this.getCommand("resetcooldown").setExecutor(new ResetCooldown(this));
         this.getCommand("printname").setExecutor(new PrintHeldItemCommand(this));
+        this.getCommand("giveitems").setExecutor(new GiveItems(this));
 
         getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable()
         {
@@ -101,6 +106,22 @@ public class Outback extends JavaPlugin implements Listener
             case "§x§2§E§2§E§2§E§lKoala": return koala;
             case "§x§0§0§B§B§F§F§lTasmanian Devil": return tasmanianDevil;
             case "§x§F§F§8§6§8§2§lQuokka": return quokka;
+            case "§x§7§5§7§5§7§5§lGreat White Shark": return greatWhiteShark;
+        }
+
+        return null;
+    }
+
+    public String getAbilityFromName(String name)
+    {
+        switch(name)
+        {
+            case "§x§F§F§6§E§0§D§lSugar Glider": return sugarGlider.name;
+            case "§x§F§F§D§D§0§0§lPossum": return possum.name;
+            case "§x§2§E§2§E§2§E§lKoala": return koala.name;
+            case "§x§0§0§B§B§F§F§lTasmanian Devil": return tasmanianDevil.name;
+            case "§x§F§F§8§6§8§2§lQuokka": return quokka.name;
+            case "§x§7§5§7§5§7§5§lGreat White Shark": return greatWhiteShark.name;
         }
 
         return null;

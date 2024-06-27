@@ -32,13 +32,15 @@ public class Possum extends Stone
 {
     private Outback plugin;
 
+    public static String itemName = "§x§F§F§D§D§0§0§lPossum";
+
     public Possum(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "Lurk";
-        itemName = "§x§F§F§D§D§0§0§lPossum";
+        name = "§x§F§F§D§D§0§0§lLurk";
+        
 
         cooldownKey = new NamespacedKey(plugin, "possum");
         cooldownMax = 45*20;
@@ -61,9 +63,9 @@ public class Possum extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item)/* && getEssence(item) >= 2 */) //ESSENCECHECK
+            if(checkItem(item, itemName)/* && getEssence(item) >= 2 */) //ESSENCECHECK
             {
-                if(Math.random() < 1)
+                if(Math.random() < 0.05)
                 {
                     Inventory inv = entity.getInventory();
                     if(inv.isEmpty())
@@ -99,7 +101,7 @@ public class Possum extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
         {
             Outback.tasks.add(new LurkTask(plugin, player));
             event.setCancelled(true);
@@ -115,7 +117,7 @@ public class Possum extends Stone
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
 
-        if(!checkItem(item)/* && getEssence(item) >= 10*/) //ESSENCECHECK
+        if(!checkItem(item, itemName)/* && getEssence(item) >= 10*/) //ESSENCECHECK
             return;
 
         Location target = Library.getTargetLocation(player, 8);

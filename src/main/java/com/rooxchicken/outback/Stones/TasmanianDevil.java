@@ -10,6 +10,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,7 +28,6 @@ import com.rooxchicken.outback.Library;
 import com.rooxchicken.outback.Outback;
 import com.rooxchicken.outback.Tasks.DisplayInformation;
 import com.rooxchicken.outback.Tasks.LurkTask;
-import com.rooxchicken.outback.Tasks.ScreechTask;
 import com.rooxchicken.outback.Tasks.SwipeTask;
 import com.rooxchicken.outback.Tasks.TorporTask;
 import com.rooxchicken.outback.Tasks.ViciousTask;
@@ -36,13 +36,15 @@ public class TasmanianDevil extends Stone
 {
     private Outback plugin;
 
+    public static String itemName = "§x§0§0§B§B§F§F§lTasmanian Devil";
+
     public TasmanianDevil(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "Screech";
-        itemName = "§x§0§0§B§B§F§F§lTasmanian Devil";
+        name = "§x§0§0§B§B§F§F§lScreech";
+        
 
         cooldownKey = new NamespacedKey(plugin, "tasmaniandevil");
         cooldownMax = 60*20;
@@ -65,7 +67,7 @@ public class TasmanianDevil extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item)/* && getEssence(item) >= 2 */) //ESSENCECHECK
+            if(checkItem(item, itemName)/* && getEssence(item) >= 2 */) //ESSENCECHECK
             {
                 if(Math.random() < 0.2)
                 {
@@ -84,9 +86,22 @@ public class TasmanianDevil extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
         {
-            Outback.tasks.add(new ScreechTask(plugin, player));
+             for(Object o : Library.getNearbyEntities(player.getLocation(), 5))
+            {
+                if(o instanceof LivingEntity && o != player)
+                {
+                    LivingEntity entity = (LivingEntity)o;
+                    entity.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 200, 0));
+                    entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 0));
+                    entity.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 0));
+
+                    entity.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation().clone().add(0,1,0), 100, 0.6, 0.5, 0.6, new Particle.DustOptions(Color.BLACK, 2f));
+                }
+            }
+
+            player.getWorld().playSound(player.getLocation(), Sound.BLOCK_SCULK_SHRIEKER_SHRIEK, 1, 1);
             event.setCancelled(true);
         }
     }
@@ -102,7 +117,7 @@ public class TasmanianDevil extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item)/* && getEssence(item) >= 10 */) //ESSENCECHECK
+            if(checkItem(item, itemName)/* && getEssence(item) >= 10 */) //ESSENCECHECK
             {
                 event.setDamage(event.getDamage() + 3);
                 damager.setHealth(damager.getHealth() + (event.getFinalDamage() * 0.4));

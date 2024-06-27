@@ -31,13 +31,14 @@ public class SugarGlider extends Stone
     private HashMap<Player, ItemStack> playerChestplateMap;
     private int soundMix = 0;
 
+    public static String itemName = "§x§F§F§6§E§0§D§lSugar Glider";
+
     public SugarGlider(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "Torpor";
-        itemName = "§x§F§F§6§E§0§D§lSugar Glider";
+        name = "§x§F§F§6§E§0§D§lTorpor";
 
         playerChestplateMap = new HashMap<Player, ItemStack>();
 
@@ -104,7 +105,7 @@ public class SugarGlider extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item)/* && getEssence(item) >= 2 */) //ESSENCECHECK
+            if(checkItem(item, itemName)/* && getEssence(item) >= 2 */) //ESSENCECHECK
             {
                 if(!entity.isOnGround())
                 {
@@ -127,7 +128,7 @@ public class SugarGlider extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
         {
             Outback.tasks.add(new TorporTask(plugin, player));
             event.setCancelled(true);

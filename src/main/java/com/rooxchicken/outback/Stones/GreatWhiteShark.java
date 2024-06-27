@@ -29,21 +29,23 @@ import com.rooxchicken.outback.Tasks.LurkTask;
 import com.rooxchicken.outback.Tasks.SwipeTask;
 import com.rooxchicken.outback.Tasks.TorporTask;
 
-public class Koala extends Stone
+import net.md_5.bungee.api.ChatColor;
+
+public class GreatWhiteShark extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§2§E§2§E§2§E§lKoala";
+    public static String itemName = "§x§7§5§7§5§7§5§lGreat White Shark";
 
-    public Koala(Outback _plugin)
+    public GreatWhiteShark(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "§x§2§E§2§E§2§E§lSwipe";
+        name = "§x§7§5§7§5§7§5§lBig Chomp";
 
-        cooldownKey = new NamespacedKey(plugin, "koala");
-        cooldownMax = 30*20;
+        cooldownKey = new NamespacedKey(plugin, "shark");
+        cooldownMax = 35*20;
     }
 
     @Override
@@ -56,27 +58,30 @@ public class Koala extends Stone
     public void playerTickLogic(Player player, ItemStack item)
     {
         /* if(getEssence(item) >= 10) */ //ESSENCECHECK
-            player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 21, 0));
+            //player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 21, 0));
     }
 
     @EventHandler
-    public void hardass(EntityDamageEvent event)
+    public void bloodScent(EntityDamageEvent event)
     {
         if(!(event.getEntity() instanceof Player))
             return;
 
         Player player = (Player)event.getEntity();
-        for(ItemStack item : DisplayInformation.playerStonesMap.get(player))
-            if(checkItem(item, itemName) && player.isSneaking()/* && getEssence(item) >= 2*/) //ESSENCECHECK
+
+        for(Player p : Bukkit.getOnlinePlayers())
+        {
+            for(ItemStack item : DisplayInformation.playerStonesMap.get(p))
+            if(checkItem(item, itemName)/* && getEssence(item) >= 2*/) //ESSENCECHECK
             {
-                player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(0, 1, 0), 40, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
-                player.getWorld().playSound(player.getLocation(), Sound.BLOCK_BASALT_BREAK, 1, 1);
-                event.setDamage(event.getDamage() * 0.8);
+                p.sendMessage(ChatColor.RED + String.format("BLOOD SCENT: (" + player.getName() + ") X %.1f | Y %.1f | Z %.1f", player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ()));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1, 0));
             }
+        }
     }
 
     @EventHandler
-    private void swipe(PlayerSwapHandItemsEvent event)
+    private void bigChomp(PlayerSwapHandItemsEvent event)
     {
         Player player = event.getPlayer();
         ItemStack item = event.getOffHandItem();
@@ -86,7 +91,7 @@ public class Koala extends Stone
 
         if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
         {
-            Outback.tasks.add(new SwipeTask(plugin, player));
+            //Outback.tasks.add(new SwipeTask(plugin, player));
             event.setCancelled(true);
         }
     }
