@@ -140,4 +140,36 @@ public class Possum extends Stone
 
     @Override
     public String getItemName() { return itemName; }
+
+    @Override
+    public void implode(Player player)
+    {
+        for(Object o : Library.getNearbyEntities(player.getLocation(), 20))
+        {
+            if(o instanceof Player)
+            {
+                Player p = (Player)o;
+                ItemStack item = p.getInventory().getItemInMainHand();
+                if(item != null && item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(Possum.itemName))
+                {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 300, 0));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 300, 1));
+
+                    p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
+
+                    player.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.GREEN, 1f));
+                }
+                else
+                {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 300, 0));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 300, 0));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 300, 0));
+
+                    p.playSound(p.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 1, 1);
+
+                    player.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.RED, 1f));
+                }
+            }
+        }
+    }
 }

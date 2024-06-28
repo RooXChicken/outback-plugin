@@ -7,10 +7,13 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Silverfish;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.rooxchicken.outback.Library;
 import com.rooxchicken.outback.Outback;
+import com.rooxchicken.outback.Stones.Possum;
 
 public class StalkTask extends Task
 {
@@ -22,9 +25,34 @@ public class StalkTask extends Task
         super(_plugin);
 
         player = _player;
-        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 2000, 2));
 
-        //player.getWorld().spawnParticle(Particle.REDSTONE, silverfish.getLocation(), 140, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
+        for(Object o : Library.getNearbyEntities(player.getLocation(), 20))
+        {
+            if(o instanceof Player)
+            {
+                Player p = (Player)o;
+                ItemStack item = p.getInventory().getItemInMainHand();
+                if(item != null && item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(Possum.itemName))
+                {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 300, 0));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 300, 1));
+
+                    p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
+
+                    player.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.GREEN, 1f));
+                }
+                else
+                {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 300, 0));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 300, 0));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 300, 0));
+
+                    p.playSound(p.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 1, 1);
+
+                    player.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.RED, 1f));
+                }
+            }
+        }
 
         tickThreshold = 20;
     }
@@ -32,8 +60,7 @@ public class StalkTask extends Task
     @Override
     public void run()
     {
-        if(silverfish == null || silverfish.isDead())
-            cancel = true;
+        
     }
 
     @Override
