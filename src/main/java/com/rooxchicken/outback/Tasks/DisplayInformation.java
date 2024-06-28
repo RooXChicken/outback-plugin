@@ -44,7 +44,7 @@ public class DisplayInformation extends Task
             {
                 if(item != null && item.hasItemMeta())
                 {
-                    if(item.equals(player.getInventory().getItemInMainHand()))
+                    if(plugin.getStoneFromName(item.getItemMeta().getDisplayName()) != null && item.equals(player.getInventory().getItemInMainHand()))
                     {
                         if(!display.equals(""))
                             display = "§x§7§6§6§A§7§4§lEssence: " + plugin.getEssence(player) + " | " + display;

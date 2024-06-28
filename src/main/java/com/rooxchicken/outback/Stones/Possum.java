@@ -115,9 +115,9 @@ public class Possum extends Stone
             return;
 
         Player player = event.getPlayer();
-        ItemStack item = player.getInventory().getItemInMainHand();
+        ItemStack item = event.getItem();
 
-        if(!checkItem(item, itemName) && getEssence(item) >= 10)
+        if(!checkItem(item, itemName) || !(getEssence(item) >= 10))
             return;
 
         Location target = Library.getTargetLocation(player, 8);

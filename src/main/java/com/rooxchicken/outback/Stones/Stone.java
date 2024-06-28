@@ -3,6 +3,7 @@ package com.rooxchicken.outback.Stones;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -85,9 +86,20 @@ public abstract class Stone implements Listener
 
         ItemMeta meta = item.getItemMeta();
         ArrayList<String> lore = new ArrayList<String>();
-        lore.add("§x§7§6§6§A§7§4§lEssence: " + (Integer.parseInt(meta.getLore().get(0).split(":")[1].trim()) + essence));
+        int newEssence = (Integer.parseInt(meta.getLore().get(0).split(":")[1].trim()) + essence);
+        lore.add("§x§7§6§6§A§7§4§lEssence: " + newEssence);
         meta.setLore(lore);
         item.setItemMeta(meta);
+
+        if(newEssence == 0)
+            return;
+
+        if(newEssence >= 10)
+            item.setType(Material.RED_DYE);
+        else if(newEssence > 4)
+            item.setType(Material.YELLOW_DYE);
+        else if(newEssence > 1)
+            item.setType(Material.GREEN_DYE);
     }
 
     public boolean checkItem(ItemStack item, String name)

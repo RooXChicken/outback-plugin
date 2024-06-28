@@ -38,7 +38,7 @@ public class GiveItems implements CommandExecutor
         ArrayList<String> lore = new ArrayList<>();
         lore.add("§x§7§6§6§A§7§4§lEssence: 0");
 
-        ItemStack sugarGlider = new ItemStack(Material.RED_DYE);
+        ItemStack sugarGlider = new ItemStack(Material.GRAY_DYE);
         ItemMeta sugarMeta = sugarGlider.getItemMeta();
         sugarMeta.setDisplayName(SugarGlider.itemName);
         sugarMeta.setLore(lore);
@@ -46,7 +46,7 @@ public class GiveItems implements CommandExecutor
 
         player.getInventory().addItem(sugarGlider);
 
-        ItemStack possum = new ItemStack(Material.YELLOW_DYE);
+        ItemStack possum = new ItemStack(Material.GRAY_DYE);
         ItemMeta possumMeta = possum.getItemMeta();
         possumMeta.setDisplayName(Possum.itemName);
         possumMeta.setLore(lore);
@@ -54,7 +54,7 @@ public class GiveItems implements CommandExecutor
 
         player.getInventory().addItem(possum);
 
-        ItemStack koala = new ItemStack(Material.LIME_DYE);
+        ItemStack koala = new ItemStack(Material.GRAY_DYE);
         ItemMeta koalaMeta = koala.getItemMeta();
         koalaMeta.setDisplayName(Koala.itemName);
         koalaMeta.setLore(lore);
@@ -62,7 +62,7 @@ public class GiveItems implements CommandExecutor
 
         player.getInventory().addItem(koala);
 
-        ItemStack tasmanianDevil = new ItemStack(Material.LIGHT_BLUE_DYE);
+        ItemStack tasmanianDevil = new ItemStack(Material.GRAY_DYE);
         ItemMeta devilMeta = tasmanianDevil.getItemMeta();
         devilMeta.setDisplayName(TasmanianDevil.itemName);
         devilMeta.setLore(lore);
@@ -70,7 +70,7 @@ public class GiveItems implements CommandExecutor
 
         player.getInventory().addItem(tasmanianDevil);
 
-        ItemStack quokka = new ItemStack(Material.PINK_DYE);
+        ItemStack quokka = new ItemStack(Material.GRAY_DYE);
         ItemMeta quokkaMeta = quokka.getItemMeta();
         quokkaMeta.setDisplayName(Quokka.itemName);
         quokkaMeta.setLore(lore);
@@ -86,7 +86,7 @@ public class GiveItems implements CommandExecutor
 
         player.getInventory().addItem(shark);
 
-        ItemStack dragonfly = new ItemStack(Material.ORANGE_DYE);
+        ItemStack dragonfly = new ItemStack(Material.GRAY_DYE);
         ItemMeta dragonflyMeta = dragonfly.getItemMeta();
         dragonflyMeta.setDisplayName(Dragonfly.itemName);
         dragonflyMeta.setLore(lore);

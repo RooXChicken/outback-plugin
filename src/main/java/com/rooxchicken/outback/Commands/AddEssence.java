@@ -49,6 +49,12 @@ public class AddEssence implements CommandExecutor
                 player.sendMessage(ChatColor.DARK_RED + "You do not have enough essence!");
                 return true;
             }
+
+            if(plugin.getStoneFromName(item.getItemMeta().getDisplayName()).getEssence(item) + essence > 10)
+            {
+                player.sendMessage(ChatColor.DARK_RED + "A stone cannot have more than 10 essence!");
+                return true;
+            }
             
             data.set(Outback.essenceKey, PersistentDataType.INTEGER, playerEssence - essence);
 
