@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -36,6 +37,7 @@ public class DisplayInformation extends Task
         playerStonesMap.clear();
         for(Player player : Bukkit.getOnlinePlayers())
         {
+            player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.0);
             String display = "";
             playerStonesMap.put(player, new ArrayList<ItemStack>());
             for(ItemStack item : player.getInventory())

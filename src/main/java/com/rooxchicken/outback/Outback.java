@@ -19,6 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.rooxchicken.outback.Commands.GiveItems;
 import com.rooxchicken.outback.Commands.PrintHeldItemCommand;
 import com.rooxchicken.outback.Commands.ResetCooldown;
+import com.rooxchicken.outback.Stones.Dragonfly;
 import com.rooxchicken.outback.Stones.GreatWhiteShark;
 import com.rooxchicken.outback.Stones.Koala;
 import com.rooxchicken.outback.Stones.Possum;
@@ -41,6 +42,7 @@ public class Outback extends JavaPlugin implements Listener
     private TasmanianDevil tasmanianDevil;
     private Quokka quokka;
     private GreatWhiteShark greatWhiteShark;
+    private Dragonfly dragonfly;
 
     @Override
     public void onEnable()
@@ -56,6 +58,7 @@ public class Outback extends JavaPlugin implements Listener
         tasmanianDevil = new TasmanianDevil(this);
         quokka = new Quokka(this);
         greatWhiteShark = new GreatWhiteShark(this);
+        dragonfly = new Dragonfly(this);
     
         essenceKey = new NamespacedKey(this, "essence");
         
@@ -107,6 +110,7 @@ public class Outback extends JavaPlugin implements Listener
             case "§x§0§0§B§B§F§F§lTasmanian Devil": return tasmanianDevil;
             case "§x§F§F§8§6§8§2§lQuokka": return quokka;
             case "§x§7§5§7§5§7§5§lGreat White Shark": return greatWhiteShark;
+            case "§x§D§4§A§5§0§B§lAustralian Emperor Dragonfly": return dragonfly;
         }
 
         return null;
@@ -122,6 +126,7 @@ public class Outback extends JavaPlugin implements Listener
             case "§x§0§0§B§B§F§F§lTasmanian Devil": return tasmanianDevil.name;
             case "§x§F§F§8§6§8§2§lQuokka": return quokka.name;
             case "§x§7§5§7§5§7§5§lGreat White Shark": return greatWhiteShark.name;
+            case "§x§D§4§A§5§0§B§lAustralian Emperor Dragonfly": return dragonfly.name;
         }
 
         return null;
