@@ -137,4 +137,7 @@ public class Possum extends Stone
         target.add(0, 4, 0);
         player.setVelocity(player.getLocation().getDirection().multiply(target.distance(player.getLocation())).multiply(0.2));
     }
+
+    @Override
+    public String getItemName() { return itemName; }
 }

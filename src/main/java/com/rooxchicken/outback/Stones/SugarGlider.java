@@ -23,6 +23,7 @@ import org.bukkit.util.Vector;
 
 import com.rooxchicken.outback.Outback;
 import com.rooxchicken.outback.Tasks.DisplayInformation;
+import com.rooxchicken.outback.Tasks.ParachuteTask;
 import com.rooxchicken.outback.Tasks.TorporTask;
 
 public class SugarGlider extends Stone
@@ -132,5 +133,14 @@ public class SugarGlider extends Stone
             Outback.tasks.add(new TorporTask(plugin, player));
             event.setCancelled(true);
         }
+    }
+
+    @Override
+    public String getItemName() { return itemName; }
+
+    @Override
+    public void implode(Player player)
+    {
+        Outback.tasks.add(new ParachuteTask(plugin, player));
     }
 }

@@ -187,6 +187,13 @@ public class Outback extends JavaPlugin implements Listener
         return data.get(essenceKey, PersistentDataType.INTEGER);
     }
 
+    public void setEssence(Player player, int essence)
+    {
+        PersistentDataContainer data = player.getPersistentDataContainer();
+
+        data.set(essenceKey, PersistentDataType.INTEGER, essence);
+    }
+
     private void checkEssenceExists(Player player)
     {
         PersistentDataContainer data = player.getPersistentDataContainer();

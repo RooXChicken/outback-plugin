@@ -110,4 +110,7 @@ public class Quokka extends Stone
             event.setCancelled(true);
         }
     }
+
+    @Override
+    public String getItemName() { return itemName; }
 }

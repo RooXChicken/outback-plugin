@@ -121,4 +121,7 @@ public class Dragonfly extends Stone
 
         return (type1.equals(type2) && (amplifier1+1)*2 - 1 == amplifier2 && duration1 * 2 == duration2);
     }
+
+    @Override
+    public String getItemName() { return itemName; }
 }

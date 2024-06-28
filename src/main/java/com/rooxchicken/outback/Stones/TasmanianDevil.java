@@ -128,4 +128,7 @@ public class TasmanianDevil extends Stone
             }
         }
     }
+
+    @Override
+    public String getItemName() { return itemName; }
 }

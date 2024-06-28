@@ -145,4 +145,7 @@ public class GreatWhiteShark extends Stone
             event.setCancelled(true);
         }
     }
+
+    @Override
+    public String getItemName() { return itemName; }
 }

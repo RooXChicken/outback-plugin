@@ -1,18 +1,25 @@
 package com.rooxchicken.outback.Stones;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import com.rooxchicken.outback.Outback;
+
+import net.md_5.bungee.api.ChatColor;
 
 public abstract class Stone implements Listener
 {
@@ -21,6 +28,7 @@ public abstract class Stone implements Listener
     public static String itemName = "§x§2§E§2§E§2§E§lStone";
 
     public NamespacedKey cooldownKey;
+    public HashMap<Player, Integer> implodeTries;
 
     public int cooldownMax;
 
@@ -28,6 +36,8 @@ public abstract class Stone implements Listener
     {
         plugin = _plugin;
         name = "Stone";
+
+        implodeTries = new HashMap<Player, Integer>();
 
         Bukkit.getServer().getPluginManager().registerEvents(this, _plugin);
     }
@@ -101,6 +111,53 @@ public abstract class Stone implements Listener
         else if(newEssence > 1)
             item.setType(Material.GREEN_DYE);
     }
+
+    @EventHandler
+    public void activateImplode(PlayerInteractEvent event)
+    {
+        if(event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_AIR)
+            return;
+
+        Player player = event.getPlayer();
+        ItemStack item = event.getItem();
+
+        if(!player.isSneaking() || !checkItem(item, getItemName()) || !(plugin.getEssence(player) >= 1))
+            return;
+
+        if(!implodeTries.containsKey(player))
+            implodeTries.put(player, 0);
+
+        int tries = implodeTries.get(player) + 1;
+
+        implodeTries.remove(player);
+
+        if(tries < 4)
+        {
+            player.sendMessage(ChatColor.RED + "You need to try " + (4-tries) + " times to implode this stone!");
+            player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
+        }
+        else
+        {
+            player.playSound(player.getLocation(), Sound.BLOCK_BASALT_BREAK, 1, 1);
+            item.setType(Material.GRAY_DYE);
+            ItemMeta meta = item.getItemMeta();
+            meta.setDisplayName(itemName);
+            item.setItemMeta(meta);
+            setEssence(item, 0);
+            implode(event.getPlayer());
+            implodeTries.put(player, 0);
+
+            plugin.setEssence(player, plugin.getEssence(player)-1);
+
+            return;
+        }
+
+        implodeTries.put(player, tries);
+    }
+
+    public String getItemName() { return itemName; };
+
+    public void implode(Player player) {}
 
     public boolean checkItem(ItemStack item, String name)
     {
