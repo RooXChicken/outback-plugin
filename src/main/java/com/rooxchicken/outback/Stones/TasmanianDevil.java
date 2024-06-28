@@ -86,7 +86,7 @@ public class TasmanianDevil extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax) && getEssence(item) >= 5)
+        if(checkItem(item, itemName) && getEssence(item) >= 5 && checkCooldown(player, cooldownKey, cooldownMax))
         {
              for(Object o : Library.getNearbyEntities(player.getLocation(), 5))
             {

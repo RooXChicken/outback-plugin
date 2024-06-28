@@ -139,7 +139,7 @@ public class GreatWhiteShark extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax) && getEssence(item) >= 5)
+        if(checkItem(item, itemName) && getEssence(item) >= 5 && checkCooldown(player, cooldownKey, cooldownMax))
         {
             Outback.tasks.add(new BigChompTask(plugin, player));
             event.setCancelled(true);
