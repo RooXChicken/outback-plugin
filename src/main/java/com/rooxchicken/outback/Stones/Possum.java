@@ -53,7 +53,7 @@ public class Possum extends Stone
     }
 
     @EventHandler
-    public void snatch(EntityDamageByEntityEvent event)
+    public void scavenger(EntityDamageByEntityEvent event)
     {
         if(!(event.getEntity() instanceof Player && event.getDamager() instanceof Player))
             return;
@@ -63,7 +63,7 @@ public class Possum extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item, itemName)/* && getEssence(item) >= 2 */) //ESSENCECHECK
+            if(checkItem(item, itemName) && getEssence(item) >= 2)
             {
                 if(Math.random() < 0.05)
                 {
@@ -101,7 +101,7 @@ public class Possum extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax) && getEssence(item) >= 5)
         {
             Outback.tasks.add(new LurkTask(plugin, player));
             event.setCancelled(true);
@@ -117,7 +117,7 @@ public class Possum extends Stone
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
 
-        if(!checkItem(item, itemName)/* && getEssence(item) >= 10*/) //ESSENCECHECK
+        if(!checkItem(item, itemName) && getEssence(item) >= 10)
             return;
 
         Location target = Library.getTargetLocation(player, 8);

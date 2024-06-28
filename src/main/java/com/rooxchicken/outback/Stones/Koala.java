@@ -55,7 +55,7 @@ public class Koala extends Stone
     @Override
     public void playerTickLogic(Player player, ItemStack item)
     {
-        /* if(getEssence(item) >= 10) */ //ESSENCECHECK
+        if(getEssence(item) >= 10)
             player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 21, 0));
     }
 
@@ -67,7 +67,7 @@ public class Koala extends Stone
 
         Player player = (Player)event.getEntity();
         for(ItemStack item : DisplayInformation.playerStonesMap.get(player))
-            if(checkItem(item, itemName) && player.isSneaking()/* && getEssence(item) >= 2*/) //ESSENCECHECK
+            if(checkItem(item, itemName) && player.isSneaking() && getEssence(item) >= 2)
             {
                 player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(0, 1, 0), 40, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
                 player.getWorld().playSound(player.getLocation(), Sound.BLOCK_BASALT_BREAK, 1, 1);
@@ -84,7 +84,7 @@ public class Koala extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax) && getEssence(item) >= 5)
         {
             Outback.tasks.add(new SwipeTask(plugin, player));
             event.setCancelled(true);

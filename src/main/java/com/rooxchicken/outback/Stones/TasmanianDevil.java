@@ -67,7 +67,7 @@ public class TasmanianDevil extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item, itemName)/* && getEssence(item) >= 2 */) //ESSENCECHECK
+            if(checkItem(item, itemName) && getEssence(item) >= 2)
             {
                 if(Math.random() < 0.2)
                 {
@@ -86,7 +86,7 @@ public class TasmanianDevil extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax) && getEssence(item) >= 5)
         {
              for(Object o : Library.getNearbyEntities(player.getLocation(), 5))
             {
@@ -117,7 +117,7 @@ public class TasmanianDevil extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item, itemName)/* && getEssence(item) >= 10 */) //ESSENCECHECK
+            if(checkItem(item, itemName) && getEssence(item) >= 10)
             {
                 event.setDamage(event.getDamage() + 3);
                 double hp = damager.getHealth() + (event.getFinalDamage() * 0.4);

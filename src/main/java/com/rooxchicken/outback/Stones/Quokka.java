@@ -58,7 +58,8 @@ public class Quokka extends Stone
     @Override
     public void playerTickLogic(Player player, ItemStack item)
     {
-        /* if(getEssence(item) >= 10) */ //ESSENCECHECK
+        if(getEssence(item) >= 10)
+        {
             for(Player p : Bukkit.getOnlinePlayers())
             {
                 Object o = Library.getTarget(p, 5);
@@ -69,7 +70,7 @@ public class Quokka extends Stone
             }
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.LUCK, 21, 2));
-        //}
+        }
     }
 
     @EventHandler
@@ -83,7 +84,7 @@ public class Quokka extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item, itemName)/* && getEssence(item) >= 2 */) //ESSENCECHECK
+            if(checkItem(item, itemName) && getEssence(item) >= 2)
             {
                 if(!damager.isOnGround())
                 {
@@ -103,7 +104,7 @@ public class Quokka extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax) && getEssence(item) >= 5)
         {
             Outback.tasks.add(new SpikyShelterTask(plugin, player));
             event.setCancelled(true);

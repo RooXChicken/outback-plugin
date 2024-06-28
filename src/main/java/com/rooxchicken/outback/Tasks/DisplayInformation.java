@@ -44,6 +44,13 @@ public class DisplayInformation extends Task
             {
                 if(item != null && item.hasItemMeta())
                 {
+                    if(item.equals(player.getInventory().getItemInMainHand()))
+                    {
+                        if(!display.equals(""))
+                            display = "§x§7§6§6§A§7§4§lEssence: " + plugin.getEssence(player) + " | " + display;
+                        else
+                            display = "§x§7§6§6§A§7§4§lEssence: " + plugin.getEssence(player);
+                    }
                     playerStonesMap.get(player).add(item);
                     Stone stone = plugin.getStoneFromName(item.getItemMeta().getDisplayName());
                     if(stone != null)
@@ -56,7 +63,8 @@ public class DisplayInformation extends Task
                 }
             }
 
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(display));
+            if(!display.equals(""))
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(display));
 
         }
     }

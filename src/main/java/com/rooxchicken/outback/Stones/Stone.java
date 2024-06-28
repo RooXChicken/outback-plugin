@@ -73,7 +73,21 @@ public abstract class Stone implements Listener
 
         ItemMeta meta = item.getItemMeta();
         ArrayList<String> lore = new ArrayList<String>();
-        lore.add("Essence: " + essence);
+        lore.add("§x§7§6§6§A§7§4§lEssence: " + essence);
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+    }
+
+    public void addEssence(ItemStack item, int essence)
+    {
+        if(item == null || !item.hasItemMeta())
+            return;
+
+        ItemMeta meta = item.getItemMeta();
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add("§x§7§6§6§A§7§4§lEssence: " + (Integer.parseInt(meta.getLore().get(0).split(":")[1].trim()) + essence));
+        meta.setLore(lore);
+        item.setItemMeta(meta);
     }
 
     public boolean checkItem(ItemStack item, String name)

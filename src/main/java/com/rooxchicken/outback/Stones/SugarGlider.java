@@ -55,9 +55,8 @@ public class SugarGlider extends Stone
     @Override
     public void playerTickLogic(Player player, ItemStack item)
     {
-        // if(!(getEssence(item) >= 10))
-        //     return;
-        //ESSENCECHECK
+        if(!(getEssence(item) >= 10))
+            return;
         Location direction = player.getLocation().clone();
         direction.setPitch(0);
 
@@ -105,7 +104,7 @@ public class SugarGlider extends Stone
 
         for(ItemStack item : DisplayInformation.playerStonesMap.get(damager))
         {
-            if(checkItem(item, itemName)/* && getEssence(item) >= 2 */) //ESSENCECHECK
+            if(checkItem(item, itemName) && getEssence(item) >= 2)
             {
                 if(!entity.isOnGround())
                 {
@@ -128,7 +127,7 @@ public class SugarGlider extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax) && getEssence(item) >= 5)
         {
             Outback.tasks.add(new TorporTask(plugin, player));
             event.setCancelled(true);

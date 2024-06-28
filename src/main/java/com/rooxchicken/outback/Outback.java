@@ -16,9 +16,11 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.rooxchicken.outback.Commands.AddEssence;
 import com.rooxchicken.outback.Commands.GiveItems;
 import com.rooxchicken.outback.Commands.PrintHeldItemCommand;
 import com.rooxchicken.outback.Commands.ResetCooldown;
+import com.rooxchicken.outback.Commands.SetEssence;
 import com.rooxchicken.outback.Stones.Dragonfly;
 import com.rooxchicken.outback.Stones.GreatWhiteShark;
 import com.rooxchicken.outback.Stones.Koala;
@@ -67,6 +69,9 @@ public class Outback extends JavaPlugin implements Listener
         this.getCommand("resetcooldown").setExecutor(new ResetCooldown(this));
         this.getCommand("printname").setExecutor(new PrintHeldItemCommand(this));
         this.getCommand("giveitems").setExecutor(new GiveItems(this));
+
+        this.getCommand("addessence").setExecutor(new AddEssence(this));
+        this.getCommand("setessence").setExecutor(new SetEssence(this));
 
         getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable()
         {
@@ -173,6 +178,13 @@ public class Outback extends JavaPlugin implements Listener
             playerData.set(essenceKey, PersistentDataType.INTEGER, playerEssence);
             killerData.set(essenceKey, PersistentDataType.INTEGER, killerEssence);
         }
+    }
+
+    public int getEssence(Player player)
+    {
+        PersistentDataContainer data = player.getPersistentDataContainer();
+
+        return data.get(essenceKey, PersistentDataType.INTEGER);
     }
 
     private void checkEssenceExists(Player player)

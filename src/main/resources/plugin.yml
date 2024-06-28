@@ -13,4 +13,10 @@ commands:
    giveitems:
       description: Gives all of the custom items
       usage: /giveitems
+   addessence:
+      description: Adds essence to the current item
+      usage: /addessence <amount>
+   setessence:
+      description: Sets your essence to the number
+      usage: /setessence <amount>
       

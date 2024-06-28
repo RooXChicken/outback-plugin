@@ -69,7 +69,7 @@ public class GreatWhiteShark extends Stone
     public void playerTickLogic(Player player, ItemStack item)
     {
         PersistentDataContainer data = player.getPersistentDataContainer();
-        /* if(getEssence(item) >= 2) */ //ESSENCECHECK
+        if(getEssence(item) >= 2)
         {
             if(!data.has(scentKey, PersistentDataType.INTEGER))
                 data.set(scentKey, PersistentDataType.INTEGER, 0);
@@ -77,7 +77,7 @@ public class GreatWhiteShark extends Stone
             data.set(scentKey, PersistentDataType.INTEGER, data.get(scentKey, PersistentDataType.INTEGER) - 1);
         }
 
-        /* if(getEssence(item) >= 10) */ //ESSENCECHECK
+        if(getEssence(item) >= 10)
         {
             if(!data.has(tridentKey, PersistentDataType.INTEGER))
                 data.set(tridentKey, PersistentDataType.INTEGER, 0);
@@ -121,7 +121,7 @@ public class GreatWhiteShark extends Stone
         for(Player p : Bukkit.getOnlinePlayers())
         {
             for(ItemStack item : DisplayInformation.playerStonesMap.get(p))
-            if(checkItem(item, itemName) && p.getPersistentDataContainer().get(scentKey, PersistentDataType.INTEGER) <= 0/* && getEssence(item) >= 2*/) //ESSENCECHECK
+            if(checkItem(item, itemName) && p.getPersistentDataContainer().get(scentKey, PersistentDataType.INTEGER) <= 0 && getEssence(item) >= 2)
             {
                 p.sendMessage(ChatColor.RED + String.format("BLOOD SCENT: (" + player.getName() + ") X %.1f | Y %.1f | Z %.1f", player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ()));
                 p.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1, 0));
@@ -139,7 +139,7 @@ public class GreatWhiteShark extends Stone
         if(!player.isSneaking())
             return;
 
-        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax)/* && getEssence(item) >= 5 */) //ESSENCECHECK
+        if(checkItem(item, itemName) && checkCooldown(player, cooldownKey, cooldownMax) && getEssence(item) >= 5)
         {
             Outback.tasks.add(new BigChompTask(plugin, player));
             event.setCancelled(true);
