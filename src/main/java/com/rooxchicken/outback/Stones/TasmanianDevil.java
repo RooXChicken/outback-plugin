@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -27,6 +28,7 @@ import org.bukkit.potion.PotionEffectType;
 import com.rooxchicken.outback.Library;
 import com.rooxchicken.outback.Outback;
 import com.rooxchicken.outback.Tasks.DisplayInformation;
+import com.rooxchicken.outback.Tasks.FuryTask;
 import com.rooxchicken.outback.Tasks.LurkTask;
 import com.rooxchicken.outback.Tasks.SwipeTask;
 import com.rooxchicken.outback.Tasks.TorporTask;
@@ -131,4 +133,10 @@ public class TasmanianDevil extends Stone
 
     @Override
     public String getItemName() { return itemName; }
+
+    @Override
+    public void implode(Player player)
+    {
+        Outback.tasks.add(new FuryTask(plugin, player));
+    }
 }
