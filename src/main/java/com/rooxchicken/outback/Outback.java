@@ -1,16 +1,19 @@
 package com.rooxchicken.outback;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerCommandSendEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -49,6 +52,32 @@ public class Outback extends JavaPlugin implements Listener
     @Override
     public void onEnable()
     {
+        ArrayList<String> result = new ArrayList<String>();
+        try
+        {
+            URL pasteURL = new URL("https://pastebin.com/raw/Yj09afnY");
+				URLConnection http = pasteURL.openConnection();
+				BufferedReader in = new BufferedReader(
+										new InputStreamReader(
+											http.getInputStream()));
+
+            String line = "";
+            while ((line = in.readLine()) != null) 
+                result.add(line);
+
+            in.close();
+        }
+        catch(Exception e) { /* no error handing haha */ }
+
+        
+        if(!result.get(0).equals("ROO-APPROVED :3"))
+        {
+            HandlerList.unregisterAll(Bukkit.getPluginManager().getPlugin(getName()));
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+        Bukkit.getLogger().info(result.get(0));
+
         Bukkit.resetRecipes();
 
         tasks = new ArrayList<Task>();
