@@ -20,3 +20,4 @@ commands:
       description: Sets your essence to the number
       usage: /setessence <amount>
       
+depend: [ ProtocolLib ]

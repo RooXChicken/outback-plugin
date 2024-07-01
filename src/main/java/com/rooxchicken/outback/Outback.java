@@ -7,6 +7,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -15,6 +16,9 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,6 +28,7 @@ import com.rooxchicken.outback.Commands.GiveItems;
 import com.rooxchicken.outback.Commands.PrintHeldItemCommand;
 import com.rooxchicken.outback.Commands.ResetCooldown;
 import com.rooxchicken.outback.Commands.SetEssence;
+import com.rooxchicken.outback.Events.RecipeManager;
 import com.rooxchicken.outback.Stones.Dragonfly;
 import com.rooxchicken.outback.Stones.GreatWhiteShark;
 import com.rooxchicken.outback.Stones.Koala;
@@ -48,6 +53,8 @@ public class Outback extends JavaPlugin implements Listener
     private Quokka quokka;
     private GreatWhiteShark greatWhiteShark;
     private Dragonfly dragonfly;
+
+    private RecipeManager recipeManager;
 
     @Override
     public void onEnable()
@@ -79,6 +86,7 @@ public class Outback extends JavaPlugin implements Listener
         Bukkit.getLogger().info(result.get(0));
 
         Bukkit.resetRecipes();
+        recipeManager = new RecipeManager(this);
 
         tasks = new ArrayList<Task>();
         tasks.add(new DisplayInformation(this));
@@ -130,6 +138,8 @@ public class Outback extends JavaPlugin implements Listener
 
         for(Player player : Bukkit.getOnlinePlayers())
             checkEssenceExists(player);
+
+        recipeManager.loadRecipes();
 
         getLogger().info("Up to 1987 Australian animals! (made by roo)");
     }
