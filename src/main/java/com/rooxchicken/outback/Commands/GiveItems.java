@@ -17,6 +17,7 @@ import com.rooxchicken.outback.Stones.GreatWhiteShark;
 import com.rooxchicken.outback.Stones.Koala;
 import com.rooxchicken.outback.Stones.Possum;
 import com.rooxchicken.outback.Stones.Quokka;
+import com.rooxchicken.outback.Stones.Stone;
 import com.rooxchicken.outback.Stones.SugarGlider;
 import com.rooxchicken.outback.Stones.TasmanianDevil;
 public class GiveItems implements CommandExecutor
@@ -35,7 +36,7 @@ public class GiveItems implements CommandExecutor
             return false;
 
         Player player = Bukkit.getPlayer(sender.getName());
-        ArrayList<String> lore = new ArrayList<>();
+        ArrayList<String> lore = Stone.baseLore();
         lore.add("§x§7§6§6§A§7§4§lEssence: 0");
 
         ItemStack sugarGlider = new ItemStack(Material.GRAY_DYE);

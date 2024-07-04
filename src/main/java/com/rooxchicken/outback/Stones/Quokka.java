@@ -36,14 +36,14 @@ public class Quokka extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§F§F§8§6§8§2§lQuokka";
+    public static String itemName = "§x§4§F§2§4§1§8§lQuokka";
 
     public Quokka(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "§x§F§F§8§6§8§2§lSpiky Shelter";
+        name = "§x§4§F§2§4§1§8§lSpiky Shelter";
         
 
         cooldownKey = new NamespacedKey(plugin, "quokka");

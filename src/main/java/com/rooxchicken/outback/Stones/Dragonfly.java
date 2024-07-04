@@ -39,14 +39,14 @@ public class Dragonfly extends Stone
     private Outback plugin;
     private PotionEffect lastEffect;
 
-    public static String itemName = "§x§D§4§A§5§0§B§lAustralian Emperor Dragonfly";
+    public static String itemName = "§x§2§2§7§9§2§B§lAustralian Emperor Dragonfly";
 
     public Dragonfly(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "§x§D§4§A§5§0§B§lSky Emperor";
+        name = "§x§2§2§7§9§2§B§lSky Emperor";
 
         cooldownKey = new NamespacedKey(plugin, "dragonfly");
         cooldownMax = 30*20;

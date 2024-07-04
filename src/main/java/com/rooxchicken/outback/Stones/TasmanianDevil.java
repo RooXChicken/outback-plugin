@@ -38,14 +38,14 @@ public class TasmanianDevil extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§0§0§B§B§F§F§lTasmanian Devil";
+    public static String itemName = "§x§D§A§2§D§2§2§lTasmanian Devil";
 
     public TasmanianDevil(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "§x§0§0§B§B§F§F§lScreech";
+        name = "§x§D§A§2§D§2§2§lScreech";
         
 
         cooldownKey = new NamespacedKey(plugin, "tasmaniandevil");

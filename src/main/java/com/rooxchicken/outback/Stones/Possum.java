@@ -33,14 +33,14 @@ public class Possum extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§F§F§D§D§0§0§lPossum";
+    public static String itemName = "§x§E§6§9§F§3§6§lPossum";
 
     public Possum(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "§x§F§F§D§D§0§0§lLurk";
+        name = "§x§E§6§9§F§3§6§lLurk";
         
 
         cooldownKey = new NamespacedKey(plugin, "possum");

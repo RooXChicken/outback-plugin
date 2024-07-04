@@ -59,6 +59,14 @@ public abstract class Stone implements Listener
         return "";
     }
 
+    public static ArrayList<String> baseLore()
+    {
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("Shift+Offhand this item to activate the second ability!");
+        lore.add("Shift+LeftClick this item 3 times to implode it!");
+        return lore;
+    }
+
     public void resetCooldown(Player player)
     {
         PersistentDataContainer data = player.getPersistentDataContainer();
@@ -83,7 +91,7 @@ public abstract class Stone implements Listener
             return;
 
         ItemMeta meta = item.getItemMeta();
-        ArrayList<String> lore = new ArrayList<String>();
+        ArrayList<String> lore = baseLore();
         lore.add("§x§7§6§6§A§7§4§lEssence: " + essence);
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -95,7 +103,7 @@ public abstract class Stone implements Listener
             return;
 
         ItemMeta meta = item.getItemMeta();
-        ArrayList<String> lore = new ArrayList<String>();
+        ArrayList<String> lore = baseLore();
         int newEssence = (Integer.parseInt(meta.getLore().get(0).split(":")[1].trim()) + essence);
         lore.add("§x§7§6§6§A§7§4§lEssence: " + newEssence);
         meta.setLore(lore);

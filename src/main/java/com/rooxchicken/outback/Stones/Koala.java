@@ -35,14 +35,14 @@ public class Koala extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§2§E§2§E§2§E§lKoala";
+    public static String itemName = "§x§9§A§8§7§B§7§lKoala";
 
     public Koala(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "§x§2§E§2§E§2§E§lSwipe";
+        name = "§x§9§A§8§7§B§7§lSwipe";
 
         cooldownKey = new NamespacedKey(plugin, "koala");
         cooldownMax = 30*20;

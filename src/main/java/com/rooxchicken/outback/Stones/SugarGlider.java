@@ -32,14 +32,14 @@ public class SugarGlider extends Stone
     private HashMap<Player, ItemStack> playerChestplateMap;
     private int soundMix = 0;
 
-    public static String itemName = "§x§F§F§6§E§0§D§lSugar Glider";
+    public static String itemName = "§x§D§C§5§E§D§4§lSugar Glider";
 
     public SugarGlider(Outback _plugin)
     {
         super(_plugin);
         plugin = _plugin;
 
-        name = "§x§F§F§6§E§0§D§lTorpor";
+        name = "§x§D§C§5§E§D§4§lTorpor";
 
         playerChestplateMap = new HashMap<Player, ItemStack>();
 

@@ -42,7 +42,7 @@ public class GreatWhiteShark extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§7§5§7§5§7§5§lGreat White Shark";
+    public static String itemName = "§x§4§8§B§2§D§A§lGreat White Shark";
     private NamespacedKey scentKey;
     private NamespacedKey tridentKey;
 
@@ -51,7 +51,7 @@ public class GreatWhiteShark extends Stone
         super(_plugin);
         plugin = _plugin;
 
-        name = "§x§7§5§7§5§7§5§lBig Chomp";
+        name = "§x§4§8§B§2§D§A§lBig Chomp";
 
         scentKey = new NamespacedKey(plugin, "bloodScent");
         tridentKey = new NamespacedKey(plugin, "trident");
