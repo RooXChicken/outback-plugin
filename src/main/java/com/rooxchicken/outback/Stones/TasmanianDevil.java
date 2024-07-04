@@ -38,7 +38,7 @@ public class TasmanianDevil extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§D§A§2§D§2§2§lTasmanian Devil";
+    public static final String itemName = "§x§D§A§2§D§2§2§lTasmanian Devil";
 
     public TasmanianDevil(Outback _plugin)
     {

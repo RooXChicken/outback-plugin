@@ -62,8 +62,8 @@ public abstract class Stone implements Listener
     public static ArrayList<String> baseLore()
     {
         ArrayList<String> lore = new ArrayList<>();
-        lore.add("Shift+Offhand this item to activate the second ability!");
-        lore.add("Shift+LeftClick this item 3 times to implode it!");
+        lore.add("§7Shift+Offhand this item to activate the second ability!");
+        lore.add("§7Shift+LeftClick this item 3 times to implode it!");
         return lore;
     }
 
@@ -82,7 +82,7 @@ public abstract class Stone implements Listener
             return -1;
 
         ItemMeta meta = item.getItemMeta();
-        return Integer.parseInt(meta.getLore().get(0).split(":")[1].trim());
+        return Integer.parseInt(meta.getLore().get(2).split(":")[1].trim());
     }
 
     public void setEssence(ItemStack item, int essence)
@@ -104,7 +104,7 @@ public abstract class Stone implements Listener
 
         ItemMeta meta = item.getItemMeta();
         ArrayList<String> lore = baseLore();
-        int newEssence = (Integer.parseInt(meta.getLore().get(0).split(":")[1].trim()) + essence);
+        int newEssence = (Integer.parseInt(meta.getLore().get(2).split(":")[1].trim()) + essence);
         lore.add("§x§7§6§6§A§7§4§lEssence: " + newEssence);
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -141,7 +141,7 @@ public abstract class Stone implements Listener
 
         if(tries < 4)
         {
-            player.sendMessage(ChatColor.RED + "You need to try " + (4-tries) + " times to implode this stone!");
+            player.sendMessage(ChatColor.RED + "You need to try " + (4-tries) + " more " + ((4-tries == 1) ? "time" : "times") + " to implode this stone!");
             player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
         }
         else

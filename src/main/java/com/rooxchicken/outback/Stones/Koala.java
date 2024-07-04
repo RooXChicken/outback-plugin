@@ -35,7 +35,7 @@ public class Koala extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§9§A§8§7§B§7§lKoala";
+    public static final String itemName = "§x§9§A§8§7§B§7§lKoala";
 
     public Koala(Outback _plugin)
     {

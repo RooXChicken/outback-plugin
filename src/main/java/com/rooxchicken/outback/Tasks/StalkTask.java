@@ -52,7 +52,7 @@ public class StalkTask extends Task
             {
                 Player p = (Player)o;
                 ItemStack item = p.getInventory().getItemInMainHand();
-                if(item != null && item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(Possum.itemName))
+                if((item != null && item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(Possum.itemName)) || p == player)
                 {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 300, 0));
                     players.add(p);

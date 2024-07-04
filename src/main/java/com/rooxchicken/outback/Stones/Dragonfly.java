@@ -39,7 +39,7 @@ public class Dragonfly extends Stone
     private Outback plugin;
     private PotionEffect lastEffect;
 
-    public static String itemName = "§x§2§2§7§9§2§B§lAustralian Emperor Dragonfly";
+    public static final String itemName = "§x§2§2§7§9§2§B§lAustralian Emperor Dragonfly";
 
     public Dragonfly(Outback _plugin)
     {

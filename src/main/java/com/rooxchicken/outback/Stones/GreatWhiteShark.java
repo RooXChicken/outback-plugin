@@ -42,7 +42,7 @@ public class GreatWhiteShark extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§4§8§B§2§D§A§lGreat White Shark";
+    public static final String itemName = "§x§4§8§B§2§D§A§lGreat White Shark";
     private NamespacedKey scentKey;
     private NamespacedKey tridentKey;
 

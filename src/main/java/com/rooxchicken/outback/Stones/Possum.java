@@ -33,7 +33,7 @@ public class Possum extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§E§6§9§F§3§6§lPossum";
+    public static final String itemName = "§x§E§6§9§F§3§6§lPossum";
 
     public Possum(Outback _plugin)
     {

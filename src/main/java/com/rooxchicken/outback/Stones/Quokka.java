@@ -36,7 +36,7 @@ public class Quokka extends Stone
 {
     private Outback plugin;
 
-    public static String itemName = "§x§4§F§2§4§1§8§lQuokka";
+    public static final String itemName = "§x§4§F§2§4§1§8§lQuokka";
 
     public Quokka(Outback _plugin)
     {

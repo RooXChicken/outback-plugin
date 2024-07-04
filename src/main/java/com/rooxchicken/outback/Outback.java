@@ -148,13 +148,13 @@ public class Outback extends JavaPlugin implements Listener
     {
         switch(name)
         {
-            case "§x§F§F§6§E§0§D§lSugar Glider": return sugarGlider;
-            case "§x§F§F§D§D§0§0§lPossum": return possum;
-            case "§x§2§E§2§E§2§E§lKoala": return koala;
-            case "§x§0§0§B§B§F§F§lTasmanian Devil": return tasmanianDevil;
-            case "§x§F§F§8§6§8§2§lQuokka": return quokka;
-            case "§x§7§5§7§5§7§5§lGreat White Shark": return greatWhiteShark;
-            case "§x§D§4§A§5§0§B§lAustralian Emperor Dragonfly": return dragonfly;
+            case SugarGlider.itemName: return sugarGlider;
+            case Possum.itemName: return possum;
+            case Koala.itemName: return koala;
+            case TasmanianDevil.itemName: return tasmanianDevil;
+            case Quokka.itemName: return quokka;
+            case GreatWhiteShark.itemName: return greatWhiteShark;
+            case Dragonfly.itemName: return dragonfly;
         }
 
         return null;
@@ -164,13 +164,13 @@ public class Outback extends JavaPlugin implements Listener
     {
         switch(name)
         {
-            case "§x§F§F§6§E§0§D§lSugar Glider": return sugarGlider.name;
-            case "§x§F§F§D§D§0§0§lPossum": return possum.name;
-            case "§x§2§E§2§E§2§E§lKoala": return koala.name;
-            case "§x§0§0§B§B§F§F§lTasmanian Devil": return tasmanianDevil.name;
-            case "§x§F§F§8§6§8§2§lQuokka": return quokka.name;
-            case "§x§7§5§7§5§7§5§lGreat White Shark": return greatWhiteShark.name;
-            case "§x§D§4§A§5§0§B§lAustralian Emperor Dragonfly": return dragonfly.name;
+            case SugarGlider.itemName: return sugarGlider.name;
+            case Possum.itemName: return possum.name;
+            case Koala.itemName: return koala.name;
+            case TasmanianDevil.itemName: return tasmanianDevil.name;
+            case Quokka.itemName: return quokka.name;
+            case GreatWhiteShark.itemName: return greatWhiteShark.name;
+            case Dragonfly.itemName: return dragonfly.name;
         }
 
         return null;
