@@ -89,7 +89,7 @@ public class Quokka extends Stone
             {
                 if(!damager.isOnGround())
                 {
-                    event.setDamage(event.getDamage() * 1.5);
+                    event.setDamage(event.getDamage() * 1.3);
                     damager.getWorld().playSound(damager.getLocation(), Sound.ENTITY_SLIME_JUMP_SMALL, 1, 1);
                 }
             }

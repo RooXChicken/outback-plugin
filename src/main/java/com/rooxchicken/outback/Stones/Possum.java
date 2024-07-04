@@ -66,7 +66,7 @@ public class Possum extends Stone
         {
             if(checkItem(item, itemName) && getEssence(item) >= 2)
             {
-                if(Math.random() < 0.05)
+                if(Math.random() < 1)
                 {
                     Inventory inv = entity.getInventory();
                     if(inv.isEmpty())
@@ -82,8 +82,9 @@ public class Possum extends Stone
                         return;
                     
                     int randomItemIndex = (int)(Math.random() * slots.size());
-                    ItemStack randomItem = inv.getItem(slots.get(randomItemIndex));
-                    inv.removeItem(randomItem);
+                    ItemStack randomItem = inv.getItem(slots.get(randomItemIndex)).clone();
+                    inv.getItem(slots.get(randomItemIndex)).setAmount(inv.getItem(slots.get(randomItemIndex)).getAmount() - 1);
+                    randomItem.setAmount(1);
                     entity.getWorld().dropItem(entity.getLocation(), randomItem);
 
                     entity.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation().clone().add(0, 1, 0), 40, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.YELLOW, 1f));
