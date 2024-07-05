@@ -14,6 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import com.rooxchicken.outback.Outback;
 import com.rooxchicken.outback.Stones.Crocodile;
+import com.rooxchicken.outback.Stones.Dragonfly;
 import com.rooxchicken.outback.Stones.Echidna;
 import com.rooxchicken.outback.Stones.GreatWhiteShark;
 import com.rooxchicken.outback.Stones.Koala;
@@ -289,6 +290,27 @@ public class RecipeManager implements Listener
     
             Bukkit.addRecipe(platypus);
         }
+
+        {
+            ItemStack item = new ItemStack(Material.GRAY_DYE);
+            ItemMeta itemMeta = item.getItemMeta();
+            itemMeta.setDisplayName(Dragonfly.itemName);
+            itemMeta.setLore(lore);
+            item.setItemMeta(itemMeta);
+    
+            NamespacedKey key = new NamespacedKey(plugin, "dragonflyRecipe");
+            dragonfly = new ShapedRecipe(key, item);
+            dragonfly.shape("AaA", "dbd", "ghg");
+    
+            dragonfly.setIngredient('A', Material.POPPED_CHORUS_FRUIT);
+            dragonfly.setIngredient('a', Material.DRAGON_HEAD);
+            dragonfly.setIngredient('b', Material.DRAGON_EGG);
+            dragonfly.setIngredient('d', Material.ELYTRA);
+            dragonfly.setIngredient('g', Material.NETHER_STAR);
+            dragonfly.setIngredient('h', Material.NETHERITE_BLOCK);
+    
+            Bukkit.addRecipe(dragonfly);
+        }
     }
 
     @EventHandler
@@ -304,10 +326,14 @@ public class RecipeManager implements Listener
 
         if(event.getRecipe().getResult().getItemMeta().getDisplayName().contains("§l"))
         {
-            ItemStack compare = event.getInventory().getItem(5);
-
-            if(!(compare.hasItemMeta() && compare.getItemMeta().getDisplayName().equals(core.getItemMeta().getDisplayName())))
-                event.getInventory().setResult(new ItemStack(Material.AIR));
+            for(ItemStack item : event.getInventory())
+            {
+                if(item != null && item.getType().equals(Material.POPPED_CHORUS_FRUIT))
+                {
+                    if(!(item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(core.getItemMeta().getDisplayName())))
+                        event.getInventory().setResult(new ItemStack(Material.AIR));
+                }
+            }
         }
     }
 }
