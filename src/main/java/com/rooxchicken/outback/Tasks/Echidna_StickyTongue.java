@@ -2,6 +2,7 @@ package com.rooxchicken.outback.Tasks;
 
 import org.bukkit.Color;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -37,8 +38,11 @@ public class Echidna_StickyTongue extends Task
                 entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 2));
                 entity.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 0));
                 entity.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 200, 0));
+                player.getWorld().playSound(entity.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 0.7f, 1);
             }
         }
+
+        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_FROG_TONGUE, 1, 1);
 
         tickThreshold = 1;
     }

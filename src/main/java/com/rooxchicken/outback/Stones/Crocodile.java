@@ -26,6 +26,7 @@ import org.bukkit.potion.PotionEffectType;
 import com.rooxchicken.outback.Library;
 import com.rooxchicken.outback.Outback;
 import com.rooxchicken.outback.Tasks.AbandonTask;
+import com.rooxchicken.outback.Tasks.Crocodile_DeathRoll;
 import com.rooxchicken.outback.Tasks.DisplayInformation;
 import com.rooxchicken.outback.Tasks.LurkTask;
 import com.rooxchicken.outback.Tasks.SpikyShelterTask;
@@ -111,6 +112,6 @@ public class Crocodile extends Stone
     @Override
     public void implode(Player player)
     {
-        //Outback.tasks.add(new AbandonTask(plugin, player));
+        Outback.tasks.add(new Crocodile_DeathRoll(plugin, player));
     }
 }
