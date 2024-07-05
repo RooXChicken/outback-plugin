@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
+import org.bukkit.block.Container;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -123,6 +126,38 @@ public class Echidna extends Stone
 
             event.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    private void burrow(PlayerInteractEvent event)
+    {
+        if(event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
+            return;
+
+        Player player = event.getPlayer();
+        ItemStack item = event.getItem();
+
+        if(!checkItem(item, itemName) || !(getEssence(item) >= 10))
+            return;
+
+        if(!player.isSneaking())
+            return;
+
+        player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation().clone().subtract(0,1,0), 20, 1, 1, 1, new Particle.DustOptions(Color.MAROON, 1.0f));
+        destroy(player.getWorld().getBlockAt(player.getLocation().clone().add(0,-1,0)));
+        destroy(player.getWorld().getBlockAt(player.getLocation().clone().add(1,-1,0)));
+        destroy(player.getWorld().getBlockAt(player.getLocation().clone().add(1,-1,1)));
+        destroy(player.getWorld().getBlockAt(player.getLocation().clone().add(0,-1,1)));
+
+        player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 60, 4));
+    }
+
+    private void destroy(Block block)
+    {
+        if(block instanceof Container)
+            return;
+
+        block.setType(Material.AIR);
     }
 
     @Override
