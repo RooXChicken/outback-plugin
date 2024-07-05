@@ -51,7 +51,6 @@ public class Echidna extends Stone
         plugin = _plugin;
 
         name = "§x§7§6§5§5§3§9§lSpiny Sphere";
-        
 
         cooldownKey = new NamespacedKey(plugin, "echidna");
         cooldownMax = 20*20;
