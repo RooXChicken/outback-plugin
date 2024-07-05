@@ -12,9 +12,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.rooxchicken.outback.Outback;
+import com.rooxchicken.outback.Stones.Crocodile;
 import com.rooxchicken.outback.Stones.Dragonfly;
+import com.rooxchicken.outback.Stones.Echidna;
 import com.rooxchicken.outback.Stones.GreatWhiteShark;
 import com.rooxchicken.outback.Stones.Koala;
+import com.rooxchicken.outback.Stones.Platypus;
 import com.rooxchicken.outback.Stones.Possum;
 import com.rooxchicken.outback.Stones.Quokka;
 import com.rooxchicken.outback.Stones.Stone;
@@ -94,6 +97,30 @@ public class GiveItems implements CommandExecutor
         dragonfly.setItemMeta(dragonflyMeta);
 
         player.getInventory().addItem(dragonfly);
+
+        ItemStack crocodile = new ItemStack(Material.GRAY_DYE);
+        ItemMeta crocodileMeta = crocodile.getItemMeta();
+        crocodileMeta.setDisplayName(Crocodile.itemName);
+        crocodileMeta.setLore(lore);
+        crocodile.setItemMeta(crocodileMeta);
+
+        player.getInventory().addItem(crocodile);
+
+        ItemStack echidna = new ItemStack(Material.GRAY_DYE);
+        ItemMeta echidnaMeta = echidna.getItemMeta();
+        echidnaMeta.setDisplayName(Echidna.itemName);
+        echidnaMeta.setLore(lore);
+        echidna.setItemMeta(echidnaMeta);
+
+        player.getInventory().addItem(echidna);
+
+        ItemStack platypus = new ItemStack(Material.GRAY_DYE);
+        ItemMeta platypusMeta = platypus.getItemMeta();
+        platypusMeta.setDisplayName(Platypus.itemName);
+        platypusMeta.setLore(lore);
+        platypus.setItemMeta(platypusMeta);
+
+        player.getInventory().addItem(platypus);
 
         return true;
     }

@@ -29,9 +29,12 @@ import com.rooxchicken.outback.Commands.PrintHeldItemCommand;
 import com.rooxchicken.outback.Commands.ResetCooldown;
 import com.rooxchicken.outback.Commands.SetEssence;
 import com.rooxchicken.outback.Events.RecipeManager;
+import com.rooxchicken.outback.Stones.Crocodile;
 import com.rooxchicken.outback.Stones.Dragonfly;
+import com.rooxchicken.outback.Stones.Echidna;
 import com.rooxchicken.outback.Stones.GreatWhiteShark;
 import com.rooxchicken.outback.Stones.Koala;
+import com.rooxchicken.outback.Stones.Platypus;
 import com.rooxchicken.outback.Stones.Possum;
 import com.rooxchicken.outback.Stones.Quokka;
 import com.rooxchicken.outback.Stones.Stone;
@@ -53,6 +56,9 @@ public class Outback extends JavaPlugin implements Listener
     private Quokka quokka;
     private GreatWhiteShark greatWhiteShark;
     private Dragonfly dragonfly;
+    private Crocodile crocodile;
+    private Echidna echidna;
+    private Platypus platypus;
 
     private RecipeManager recipeManager;
 
@@ -98,6 +104,9 @@ public class Outback extends JavaPlugin implements Listener
         quokka = new Quokka(this);
         greatWhiteShark = new GreatWhiteShark(this);
         dragonfly = new Dragonfly(this);
+        crocodile = new Crocodile(this);
+        echidna = new Echidna(this);
+        platypus = new Platypus(this);
     
         essenceKey = new NamespacedKey(this, "essence");
         
@@ -155,6 +164,9 @@ public class Outback extends JavaPlugin implements Listener
             case Quokka.itemName: return quokka;
             case GreatWhiteShark.itemName: return greatWhiteShark;
             case Dragonfly.itemName: return dragonfly;
+            case Crocodile.itemName: return crocodile;
+            case Echidna.itemName: return echidna;
+            case Platypus.itemName: return platypus;
         }
 
         return null;
@@ -170,7 +182,9 @@ public class Outback extends JavaPlugin implements Listener
             case TasmanianDevil.itemName: return tasmanianDevil.name;
             case Quokka.itemName: return quokka.name;
             case GreatWhiteShark.itemName: return greatWhiteShark.name;
-            case Dragonfly.itemName: return dragonfly.name;
+            case Crocodile.itemName: return crocodile.name;
+            case Echidna.itemName: return echidna.name;
+            case Platypus.itemName: return platypus.name;
         }
 
         return null;
