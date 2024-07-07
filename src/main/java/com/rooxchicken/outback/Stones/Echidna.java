@@ -73,16 +73,6 @@ public class Echidna extends Stone
     }
 
     @EventHandler
-    public void digest(PlayerItemConsumeEvent event)
-    {
-        ItemStack item = event.getItem();
-        if(item.getType().isEdible())
-        {
-            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 4, 0));
-        }
-    }
-
-    @EventHandler
     private void astuteSnout(PlayerInteractEvent event)
     {
         if(event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)

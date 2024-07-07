@@ -71,10 +71,19 @@ public class Crocodile extends Stone
     @EventHandler
     public void digest(PlayerItemConsumeEvent event)
     {
+        Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if(item.getType().isEdible())
+
+        if(!item.getType().isEdible())
+            return;
+
+        for(ItemStack stone : DisplayInformation.playerStonesMap.get(player))
         {
-            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 4, 0));
+            if(checkItem(stone, itemName) && getEssence(stone) >= 10)
+            {
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 4, 0));
+                return;
+            }
         }
     }
 
