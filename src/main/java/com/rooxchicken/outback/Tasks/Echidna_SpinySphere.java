@@ -34,7 +34,7 @@ public class Echidna_SpinySphere extends Task implements Listener
 
         player = _player;
 
-        sphere = new Sphere(new Color[] {Color.GRAY}, 20);
+        sphere = new Sphere(new Color[] {Color.GRAY}, 10);
         player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60, 1));
 
         tickThreshold = 2;

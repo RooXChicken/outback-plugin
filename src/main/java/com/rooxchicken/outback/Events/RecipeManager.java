@@ -8,9 +8,11 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import com.rooxchicken.outback.Outback;
 import com.rooxchicken.outback.Stones.Crocodile;
@@ -28,6 +30,7 @@ import com.rooxchicken.outback.Stones.TasmanianDevil;
 public class RecipeManager implements Listener
 {
     private Outback plugin;
+    private NamespacedKey randomKey;
 
     private ShapedRecipe essence;
     private ShapedRecipe stone;
@@ -45,6 +48,9 @@ public class RecipeManager implements Listener
     public RecipeManager(Outback _plugin)
     {
         plugin = _plugin;
+
+        randomKey = new NamespacedKey(_plugin, "randomID");
+
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
@@ -103,6 +109,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(SugarGlider.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "sugarGliderRecipe");
@@ -124,6 +131,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(Possum.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "possumRecipe");
@@ -145,6 +153,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(Koala.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "koalaRecipe");
@@ -168,6 +177,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(TasmanianDevil.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "devilRecipe");
@@ -189,6 +199,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(Quokka.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "quokkaRecipe");
@@ -210,6 +221,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(GreatWhiteShark.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "sharkRecipe");
@@ -235,6 +247,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(Crocodile.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "crocodileRecipe");
@@ -255,6 +268,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(Echidna.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "echidnaRecipe");
@@ -275,6 +289,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(Platypus.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "platypusRecipe");
@@ -296,6 +311,7 @@ public class RecipeManager implements Listener
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName(Dragonfly.itemName);
             itemMeta.setLore(lore);
+            itemMeta.getPersistentDataContainer().set(randomKey, PersistentDataType.STRING, String.valueOf(Math.random()));
             item.setItemMeta(itemMeta);
     
             NamespacedKey key = new NamespacedKey(plugin, "dragonflyRecipe");

@@ -120,12 +120,15 @@ public class GreatWhiteShark extends Stone
 
         for(Player p : Bukkit.getOnlinePlayers())
         {
-            for(ItemStack item : DisplayInformation.playerStonesMap.get(p))
-            if(checkItem(item, itemName) && p.getPersistentDataContainer().get(scentKey, PersistentDataType.INTEGER) <= 0 && getEssence(item) >= 2)
+            if(p != player)
             {
-                p.sendMessage(ChatColor.RED + String.format("BLOOD SCENT: (" + player.getName() + ") X %.1f | Y %.1f | Z %.1f", player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ()));
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1, 0));
-                p.getPersistentDataContainer().set(scentKey, PersistentDataType.INTEGER, 200);
+                for(ItemStack item : DisplayInformation.playerStonesMap.get(p))
+                if(checkItem(item, itemName) && p.getPersistentDataContainer().get(scentKey, PersistentDataType.INTEGER) <= 0 && getEssence(item) >= 2)
+                {
+                    p.sendMessage(ChatColor.RED + String.format("BLOOD SCENT: (" + player.getName() + ") X %.1f | Y %.1f | Z %.1f", player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ()));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1, 0));
+                    p.getPersistentDataContainer().set(scentKey, PersistentDataType.INTEGER, 200);
+                }
             }
         }
     }

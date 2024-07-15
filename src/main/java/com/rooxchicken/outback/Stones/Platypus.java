@@ -70,7 +70,8 @@ public class Platypus extends Stone
         {
             if(t % 200 == 0)
             {
-                Outback.tasks.add(new Platypus_WebbedFeet(plugin, player));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 20, 0));
+                //Outback.tasks.add(new Platypus_WebbedFeet(plugin, player));
             }
         }
         if(getEssence(item) >= 10)
@@ -100,7 +101,7 @@ public class Platypus extends Stone
                     for(int y = 0; y < 10; y++)
                     {
                         Block block = player.getWorld().getBlockAt(player.getLocation().getBlockX() + (1-x), player.getLocation().getBlockY() - y, player.getLocation().getBlockZ() + (1-z));
-                        if(!(block.getState() instanceof Container))
+                        if(block != null && !(block.getState() instanceof Container) && !block.getType().equals(Material.BEDROCK))
                             block.setType(Material.WATER);
 
                         block.getWorld().spawnParticle(Particle.REDSTONE, block.getLocation(), 4, 0.5, 0.5, 0.5, new Particle.DustOptions(Color.BLUE, 1.0f));

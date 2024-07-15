@@ -44,7 +44,8 @@ public class SkyEmperorTask extends Task implements Listener
     @Override
     public void run()
     {
-        if(++t > 300)
+        t++;
+        if(t > 200)
         {
             player.setAllowFlight(false);
             player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 11, 0));

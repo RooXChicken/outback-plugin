@@ -29,7 +29,7 @@ public class AbandonTask extends Task
         silverfish = (Silverfish)player.getWorld().spawnEntity(player.getLocation(), EntityType.SILVERFISH);
         silverfish.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40);
         silverfish.setHealth(40);
-        silverfish.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 1000000, 0));
+        silverfish.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 1000000, 2));
 
         player.getWorld().spawnParticle(Particle.REDSTONE, silverfish.getLocation(), 140, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
 

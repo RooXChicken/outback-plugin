@@ -45,7 +45,7 @@ public class Koala extends Stone
         name = "§x§9§A§8§7§B§7§lSwipe";
 
         cooldownKey = new NamespacedKey(plugin, "koala");
-        cooldownMax = 30*20;
+        cooldownMax = 45*20;
     }
 
     @Override

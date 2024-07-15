@@ -21,7 +21,7 @@ public class TorporTask extends Task
 
         player = _player;
         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 3));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 3));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 0));
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_CAT_PURR, 1, 1);
         player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(0, 1, 0), 40, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
 

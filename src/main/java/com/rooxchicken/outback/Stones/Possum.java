@@ -19,6 +19,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -34,6 +36,8 @@ public class Possum extends Stone
     private Outback plugin;
 
     public static final String itemName = "§x§E§6§9§F§3§6§lPossum";
+    private NamespacedKey thirdArmCountKey;
+    private NamespacedKey thirdArmCooldownKey;
 
     public Possum(Outback _plugin)
     {
@@ -44,6 +48,8 @@ public class Possum extends Stone
         
 
         cooldownKey = new NamespacedKey(plugin, "possum");
+        thirdArmCountKey = new NamespacedKey(plugin, "possum_thirdarm");
+        thirdArmCooldownKey = new NamespacedKey(plugin, "possum_thirdarmCD");
         cooldownMax = 45*20;
     }
 
@@ -52,6 +58,28 @@ public class Possum extends Stone
     {
         
     }
+
+    @Override
+    public void playerTickLogic(Player player, ItemStack item)
+    {
+        if(getEssence(item) >= 10)
+        {
+            PersistentDataContainer data = player.getPersistentDataContainer();
+            if(!data.has(thirdArmCooldownKey, PersistentDataType.INTEGER))
+                data.set(thirdArmCooldownKey, PersistentDataType.INTEGER, 0);
+            if(!data.has(thirdArmCountKey, PersistentDataType.INTEGER))
+                data.set(thirdArmCountKey, PersistentDataType.INTEGER, 3);
+
+            int cd = data.get(thirdArmCooldownKey, PersistentDataType.INTEGER) + 1;
+            if(cd > 300)
+            {
+                int count = data.get(thirdArmCountKey, PersistentDataType.INTEGER);
+                data.set(thirdArmCooldownKey, PersistentDataType.INTEGER, 0);
+                data.set(thirdArmCountKey, PersistentDataType.INTEGER, (count < 3) ? count + 1 : 3);
+            }
+        }
+    }
+
 
     @EventHandler
     public void scavenger(EntityDamageByEntityEvent event)
@@ -66,7 +94,7 @@ public class Possum extends Stone
         {
             if(checkItem(item, itemName) && getEssence(item) >= 2)
             {
-                if(Math.random() < 1)
+                if(Math.random() < 0.05)
                 {
                     Inventory inv = entity.getInventory();
                     if(inv.isEmpty())
@@ -132,9 +160,6 @@ public class Possum extends Stone
         }
 
         player.getWorld().playSound(player.getLocation(), Sound.BLOCK_BIG_DRIPLEAF_FALL, 1, 1);
-
-        player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 60, 2));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 60, 2));
 
         target.add(0, 4, 0);
         player.setVelocity(player.getLocation().getDirection().multiply(target.distance(player.getLocation())).multiply(0.2));

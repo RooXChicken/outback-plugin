@@ -143,7 +143,7 @@ public class Echidna extends Stone
 
     private void destroy(Block block)
     {
-        if(block instanceof Container)
+        if(block == null || block instanceof Container || block.getType().equals(Material.BEDROCK))
             return;
 
         block.setType(Material.AIR);

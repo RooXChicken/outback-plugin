@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -64,7 +65,13 @@ public class Crocodile extends Stone
         if(getEssence(item) >= 2)
         {
             if(player.isInWater())
-                player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 4, 3));
+            {
+                player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(2);
+            }
+            else
+            {
+                player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(1);
+            }
         }
     }
 
@@ -81,7 +88,7 @@ public class Crocodile extends Stone
         {
             if(checkItem(stone, itemName) && getEssence(stone) >= 10)
             {
-                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 4, 0));
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 60, 0));
                 return;
             }
         }

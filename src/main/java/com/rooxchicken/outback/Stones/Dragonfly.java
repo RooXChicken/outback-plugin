@@ -49,11 +49,17 @@ public class Dragonfly extends Stone
         name = "§x§2§2§7§9§2§B§lSky Emperor";
 
         cooldownKey = new NamespacedKey(plugin, "dragonfly");
-        cooldownMax = 30*20;
+        cooldownMax = 120*20;
     }
 
     @Override
     public void tick()
+    {
+        
+    }
+
+    @Override
+    public void activateImplode(PlayerInteractEvent event)
     {
         
     }
@@ -66,7 +72,7 @@ public class Dragonfly extends Stone
     }
 
     @EventHandler
-    private void swipe(PlayerSwapHandItemsEvent event)
+    private void skyEmporer(PlayerSwapHandItemsEvent event)
     {
         Player player = event.getPlayer();
         ItemStack item = event.getOffHandItem();
