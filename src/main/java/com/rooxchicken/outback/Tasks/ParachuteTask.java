@@ -75,7 +75,7 @@ public class ParachuteTask extends Task implements Listener
             }
 
             player.getWorld().playSound(player.getLocation(), Sound.BLOCK_BASALT_BREAK, 1, 1);
-            player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation(), 4000, 5, 0, 5, new Particle.DustOptions(Color.GRAY, 2f));
+            player.getWorld().spawnParticle(Particle.DUST, player.getLocation(), 4000, 5, 0, 5, new Particle.DustOptions(Color.GRAY, 2f));
 
             for(Entry<Player, ItemStack> p : playerChestplateMap.entrySet())
             {

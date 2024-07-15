@@ -60,12 +60,12 @@ public class Crocodile_DeathRoll extends Task implements Listener
             return;
 
         damager.getWorld().playSound(damager.getLocation(), Sound.ENTITY_EVOKER_FANGS_ATTACK, 1, 1);
-        damager.getWorld().spawnParticle(Particle.REDSTONE, damager.getLocation().clone().add(0,1,0), 140, 0.5, 0.8, 0.5, new Particle.DustOptions(Color.GREEN, 1.0f));
+        damager.getWorld().spawnParticle(Particle.DUST, damager.getLocation().clone().add(0,1,0), 140, 0.5, 0.8, 0.5, new Particle.DustOptions(Color.GREEN, 1.0f));
         entity.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 0));
-        entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 100, 2));
-        entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 2));
+        entity.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, 100, 2));
+        entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 100, 2));
         entity.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 100, 1));
-        entity.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 100, 0));
+        entity.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 100, 0));
 
         affected.add(entity);
 

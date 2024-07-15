@@ -97,7 +97,7 @@ public class LurkTask extends Task
         cloud = (AreaEffectCloud) player.getWorld().spawnEntity(entrance, EntityType.AREA_EFFECT_CLOUD);
         cloud.addCustomEffect(new PotionEffect(PotionEffectType.POISON, 200, 0), true);
 
-        player.getWorld().spawnParticle(Particle.REDSTONE, entrance, 400, 1, 0.2, 1, new Particle.DustOptions(Color.fromRGB(0x882222), 1f));
+        player.getWorld().spawnParticle(Particle.DUST, entrance, 400, 1, 0.2, 1, new Particle.DustOptions(Color.fromRGB(0x882222), 1f));
     }
 
     private void playSound()
@@ -110,7 +110,7 @@ public class LurkTask extends Task
     {
         playSound();
 
-        player.getWorld().spawnParticle(Particle.REDSTONE, entrance, 400, 1, 0.2, 1, new Particle.DustOptions(Color.fromRGB(0x882222), 1f));
+        player.getWorld().spawnParticle(Particle.DUST, entrance, 400, 1, 0.2, 1, new Particle.DustOptions(Color.fromRGB(0x882222), 1f));
         
         if(t == 19)
         {

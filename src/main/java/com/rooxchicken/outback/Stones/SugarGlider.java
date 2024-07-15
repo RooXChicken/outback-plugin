@@ -70,7 +70,7 @@ public class SugarGlider extends Stone
 
                 if(soundMix++ % 4 == 0)
                 {
-                    player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(0, 1, 0), 20, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
+                    player.getWorld().spawnParticle(Particle.DUST, player.getLocation().clone().add(0, 1, 0), 20, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
                     player.getWorld().playSound(player.getLocation(), Sound.BLOCK_HONEY_BLOCK_SLIDE, 1, 1);
                 }
                 
@@ -109,7 +109,7 @@ public class SugarGlider extends Stone
             {
                 if(!entity.isOnGround())
                 {
-                    damager.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation().clone().add(0, 1, 0), 40, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
+                    damager.getWorld().spawnParticle(Particle.DUST, entity.getLocation().clone().add(0, 1, 0), 40, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
 
                     damager.getWorld().playSound(damager.getLocation(), Sound.BLOCK_BASALT_BREAK, 1, 1);
                     event.setDamage(event.getDamage() + 2);

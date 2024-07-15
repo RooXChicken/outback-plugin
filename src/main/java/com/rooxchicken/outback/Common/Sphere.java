@@ -55,7 +55,7 @@ public class Sphere
                 double xOffset = cacheX[k];
                 double zOffset = cacheZ[k];
 
-                pos.getWorld().spawnParticle(Particle.REDSTONE, particlePos.add(xOffset * sphereOffsetXZ, sphereOffset, zOffset * sphereOffsetXZ), 1, offset, offset, offset, new Particle.DustOptions(colors[(int)(Math.random()*colors.length)], particleSize));
+                pos.getWorld().spawnParticle(Particle.DUST, particlePos.add(xOffset * sphereOffsetXZ, sphereOffset, zOffset * sphereOffsetXZ), 1, offset, offset, offset, new Particle.DustOptions(colors[(int)(Math.random()*colors.length)], particleSize));
             }
         }
     }

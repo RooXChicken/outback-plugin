@@ -39,7 +39,7 @@ public class FuryTask extends Task implements Listener
 
         player = _player;
 
-        player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 300, 9));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 300, 9));
         player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(10);
         int strength = 1;
         for(Object o : Library.getNearbyEntities(player.getLocation(), 5))

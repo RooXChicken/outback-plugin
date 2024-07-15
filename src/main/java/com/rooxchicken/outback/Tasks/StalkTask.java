@@ -60,7 +60,7 @@ public class StalkTask extends Task
 
                     p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
 
-                    player.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.GREEN, 1f));
+                    player.getWorld().spawnParticle(Particle.DUST, p.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.GREEN, 1f));
                 }
                 else
                 {
@@ -70,7 +70,7 @@ public class StalkTask extends Task
 
                     p.playSound(p.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 1, 1);
 
-                    player.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.RED, 1f));
+                    player.getWorld().spawnParticle(Particle.DUST, p.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.RED, 1f));
                 }
             }
         }

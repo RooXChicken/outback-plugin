@@ -96,10 +96,10 @@ public class TasmanianDevil extends Stone
                 {
                     LivingEntity entity = (LivingEntity)o;
                     entity.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 200, 0));
-                    entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 0));
+                    entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 200, 0));
                     entity.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 0));
 
-                    entity.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation().clone().add(0,1,0), 100, 0.6, 0.5, 0.6, new Particle.DustOptions(Color.BLACK, 2f));
+                    entity.getWorld().spawnParticle(Particle.DUST, entity.getLocation().clone().add(0,1,0), 100, 0.6, 0.5, 0.6, new Particle.DustOptions(Color.BLACK, 2f));
                 }
             }
 
@@ -125,7 +125,7 @@ public class TasmanianDevil extends Stone
                 double hp = damager.getHealth() + (event.getFinalDamage() * 0.05);
                 hp = Math.min(20, hp);
                 damager.setHealth(hp);
-                damager.getWorld().spawnParticle(Particle.BLOCK_DUST, damager.getLocation().clone().add(0,1,0 ), 20, Material.REDSTONE_BLOCK.createBlockData());
+                damager.getWorld().spawnParticle(Particle.BLOCK, damager.getLocation().clone().add(0,1,0 ), 20, Material.REDSTONE_BLOCK.createBlockData());
 
             }
         }

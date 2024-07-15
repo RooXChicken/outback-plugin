@@ -41,8 +41,8 @@ public class DigestTask extends Task implements Listener
         super(_plugin);
 
         player = _player;
-        oldStrength = player.getPotionEffect(PotionEffectType.INCREASE_DAMAGE);
-        player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+        oldStrength = player.getPotionEffect(PotionEffectType.STRENGTH);
+        player.removePotionEffect(PotionEffectType.STRENGTH);
 
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1, 1);
 
@@ -53,7 +53,7 @@ public class DigestTask extends Task implements Listener
     public void run()
     {
         if(strength != 0)
-        player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2, strength-1));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 2, strength-1));
 
         if(++t > 600)
             cancel = true;
@@ -80,13 +80,13 @@ public class DigestTask extends Task implements Listener
 
         strength++;
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
-        player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(0,1,0), 100, 0.2, 0.5, 0.2, new Particle.DustOptions(Color.RED, 1.5f));
+        player.getWorld().spawnParticle(Particle.DUST, player.getLocation().clone().add(0,1,0), 100, 0.2, 0.5, 0.2, new Particle.DustOptions(Color.RED, 1.5f));
     }
 
     @Override
     public void onCancel()
     {
-        player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+        player.removePotionEffect(PotionEffectType.STRENGTH);
         if(oldStrength != null)
             player.addPotionEffect(oldStrength);
 

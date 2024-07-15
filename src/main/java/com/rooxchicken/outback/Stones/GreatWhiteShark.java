@@ -90,7 +90,7 @@ public class GreatWhiteShark extends Stone
                 data.set(tridentKey, PersistentDataType.INTEGER, 6000);
                 ItemStack trident = new ItemStack(Material.TRIDENT);
                 trident.addUnsafeEnchantment(Enchantment.RIPTIDE, 5);
-                trident.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 5);
+                trident.addUnsafeEnchantment(Enchantment.SHARPNESS, 5);
                 ItemMeta tridentMeta = trident.getItemMeta();
                 tridentMeta.setDisplayName("§x§D§4§0§0§0§0§lApex Predator");
                 ((Damageable)tridentMeta).setDamage(246);

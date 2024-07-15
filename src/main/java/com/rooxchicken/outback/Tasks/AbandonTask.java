@@ -24,14 +24,14 @@ public class AbandonTask extends Task
         super(_plugin);
 
         player = _player;
-        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 2000, 2));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 2000, 2));
         
         silverfish = (Silverfish)player.getWorld().spawnEntity(player.getLocation(), EntityType.SILVERFISH);
         silverfish.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40);
         silverfish.setHealth(40);
         silverfish.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 1000000, 2));
 
-        player.getWorld().spawnParticle(Particle.REDSTONE, silverfish.getLocation(), 140, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
+        player.getWorld().spawnParticle(Particle.DUST, silverfish.getLocation(), 140, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.fromRGB(0x888888), 1f));
 
         tickThreshold = 20;
     }
@@ -46,6 +46,6 @@ public class AbandonTask extends Task
     @Override
     public void onCancel()
     {
-        player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+        player.removePotionEffect(PotionEffectType.RESISTANCE);
     }
 }

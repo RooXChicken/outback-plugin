@@ -115,7 +115,7 @@ public class Possum extends Stone
                     randomItem.setAmount(1);
                     entity.getWorld().dropItem(entity.getLocation(), randomItem);
 
-                    entity.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation().clone().add(0, 1, 0), 40, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.YELLOW, 1f));
+                    entity.getWorld().spawnParticle(Particle.DUST, entity.getLocation().clone().add(0, 1, 0), 40, 0.2, 0.2, 0.2, new Particle.DustOptions(Color.YELLOW, 1f));
                     entity.getWorld().playSound(entity.getLocation(), Sound.ITEM_HOE_TILL, 1, 1);
                 }
             }
@@ -156,7 +156,7 @@ public class Possum extends Stone
 
         for(int i = 0; i < 50; i++)
         {
-            player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(target.clone().subtract(player.getLocation()).multiply(i/50.0)), 2, 0, 0, 0, new Particle.DustOptions(Color.fromRGB(0x882222), 1f));
+            player.getWorld().spawnParticle(Particle.DUST, player.getLocation().clone().add(target.clone().subtract(player.getLocation()).multiply(i/50.0)), 2, 0, 0, 0, new Particle.DustOptions(Color.fromRGB(0x882222), 1f));
         }
 
         player.getWorld().playSound(player.getLocation(), Sound.BLOCK_BIG_DRIPLEAF_FALL, 1, 1);

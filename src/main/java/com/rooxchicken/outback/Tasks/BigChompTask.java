@@ -40,7 +40,7 @@ public class BigChompTask extends Task implements Listener
         
         player.getInventory().getBoots().addUnsafeEnchantment(Enchantment.DEPTH_STRIDER, 5);
 
-        player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 60, 4));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 60, 4));
 
         tickThreshold = 20;
     }

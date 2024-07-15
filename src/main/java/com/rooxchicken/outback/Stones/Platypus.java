@@ -78,7 +78,7 @@ public class Platypus extends Stone
         {
             player.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 21, 0));
             player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 21, 0));
-            player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 21, 0));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 21, 0));
         }
     }
 
@@ -104,7 +104,7 @@ public class Platypus extends Stone
                         if(block != null && !(block.getState() instanceof Container) && !block.getType().equals(Material.BEDROCK))
                             block.setType(Material.WATER);
 
-                        block.getWorld().spawnParticle(Particle.REDSTONE, block.getLocation(), 4, 0.5, 0.5, 0.5, new Particle.DustOptions(Color.BLUE, 1.0f));
+                        block.getWorld().spawnParticle(Particle.DUST, block.getLocation(), 4, 0.5, 0.5, 0.5, new Particle.DustOptions(Color.BLUE, 1.0f));
                     }
                 }
             }

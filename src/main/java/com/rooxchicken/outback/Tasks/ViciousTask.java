@@ -43,6 +43,6 @@ public class ViciousTask extends Task
         }
 
         player.damage(2);
-        player.getWorld().spawnParticle(Particle.BLOCK_DUST, player.getLocation().clone().add(0,1,0 ), 20, Material.REDSTONE_BLOCK.createBlockData());
+        player.getWorld().spawnParticle(Particle.BLOCK, player.getLocation().clone().add(0,1,0 ), 20, Material.REDSTONE_BLOCK.createBlockData());
     }
 }

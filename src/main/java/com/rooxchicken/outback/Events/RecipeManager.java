@@ -91,7 +91,7 @@ public class RecipeManager implements Listener
             stone = new ShapedRecipe(key, item);
             stone.shape("abc", "def", "ghi");
     
-            stone.setIngredient('a', Material.SCUTE);
+            stone.setIngredient('a', Material.TURTLE_SCUTE);
             stone.setIngredient('b', Material.PHANTOM_MEMBRANE);
             stone.setIngredient('c', Material.RABBIT_HIDE);
             stone.setIngredient('d', Material.SLIME_BALL);
@@ -255,7 +255,7 @@ public class RecipeManager implements Listener
             crocodile.shape("aaa", "dAd", "ghg");
     
             crocodile.setIngredient('A', Material.POPPED_CHORUS_FRUIT);
-            crocodile.setIngredient('a', Material.SCUTE);
+            crocodile.setIngredient('a', Material.TURTLE_SCUTE);
             crocodile.setIngredient('d', Material.WATER_BUCKET);
             crocodile.setIngredient('g', Material.POINTED_DRIPSTONE);
             crocodile.setIngredient('h', Material.SNIFFER_EGG);

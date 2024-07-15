@@ -48,7 +48,7 @@ public class Platypus_ToxicSpur extends Task implements Listener
         Player damager = (Player)event.getDamager();
 
         entity.setVelocity(player.getLocation().getDirection().multiply(2));
-        damager.getWorld().spawnParticle(Particle.REDSTONE, damager.getLocation().clone().add(0,1,0), 140, 0.5, 0.8, 0.5, new Particle.DustOptions(Color.GREEN, 1.0f));
+        damager.getWorld().spawnParticle(Particle.DUST, damager.getLocation().clone().add(0,1,0), 140, 0.5, 0.8, 0.5, new Particle.DustOptions(Color.GREEN, 1.0f));
         entity.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 30*20, 2));
 
         if(++t > 2)

@@ -27,7 +27,7 @@ public class SpikyShelterTask extends Task
         super(_plugin);
 
         player = _player;
-        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 0));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 200, 0));
         player.getWorld().playSound(player.getLocation(), Sound.BLOCK_CHERRY_LEAVES_BREAK, 1, 1);
 
         tickThreshold = 1;
@@ -39,9 +39,9 @@ public class SpikyShelterTask extends Task
         for(Player p : Bukkit.getOnlinePlayers())
         {
             if(p != player)
-                p.spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(0,1,0), 40, 0.3, 0.6, 0.3, new Particle.DustOptions(Color.GREEN, 2f));
+                p.spawnParticle(Particle.DUST, player.getLocation().clone().add(0,1,0), 40, 0.3, 0.6, 0.3, new Particle.DustOptions(Color.GREEN, 2f));
             else
-                p.spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(0,1,0), 10, 0.3, 0.6, 0.3, new Particle.DustOptions(Color.GREEN, 1f));
+                p.spawnParticle(Particle.DUST, player.getLocation().clone().add(0,1,0), 10, 0.3, 0.6, 0.3, new Particle.DustOptions(Color.GREEN, 1f));
         }
 
         if(t % 15 == 0)

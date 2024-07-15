@@ -68,7 +68,7 @@ public class Echidna extends Stone
         if(getEssence(item) >= 2)
         {
             if(player.isInWater())
-                player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 4, 3));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 4, 3));
         }
     }
 
@@ -132,13 +132,13 @@ public class Echidna extends Stone
         if(!player.isSneaking())
             return;
 
-        player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation().clone().subtract(0,1,0), 20, 1, 1, 1, new Particle.DustOptions(Color.MAROON, 1.0f));
+        player.getWorld().spawnParticle(Particle.DUST, player.getLocation().clone().subtract(0,1,0), 20, 1, 1, 1, new Particle.DustOptions(Color.MAROON, 1.0f));
         destroy(player.getWorld().getBlockAt(player.getLocation().clone().add(0,-1,0)));
         destroy(player.getWorld().getBlockAt(player.getLocation().clone().add(1,-1,0)));
         destroy(player.getWorld().getBlockAt(player.getLocation().clone().add(1,-1,1)));
         destroy(player.getWorld().getBlockAt(player.getLocation().clone().add(0,-1,1)));
 
-        player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 60, 4));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60, 4));
     }
 
     private void destroy(Block block)

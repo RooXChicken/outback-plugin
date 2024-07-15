@@ -68,7 +68,7 @@ public class LoseTeethTask extends Task implements Listener
 
         hits++;
         entity.getWorld().playSound(entity.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 1, 1);
-        entity.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.RED, 1f));
+        entity.getWorld().spawnParticle(Particle.DUST, entity.getLocation(), 200, 1, 0.2, 1, new Particle.DustOptions(Color.RED, 1f));
 
         entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue() - 2);
         if(!affectedPlayers.containsKey(entity))

@@ -107,14 +107,14 @@ public class Crocodile extends Stone
         {
             player.getWorld().playSound(player.getLocation(), Sound.ENTITY_EVOKER_FANGS_ATTACK, 1, 0.8f);
             player.setVelocity(player.getLocation().getDirection());
-            player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(0,1,0), 90, 0.5, 0.8, 0.5, new Particle.DustOptions(Color.GREEN, 1.0f));
+            player.getWorld().spawnParticle(Particle.DUST, player.getLocation().clone().add(0,1,0), 90, 0.5, 0.8, 0.5, new Particle.DustOptions(Color.GREEN, 1.0f));
 
             Object t = Library.getTarget(player, 6);
             if(t != null && t instanceof Player)
             {
                 Player target = (Player)t;
                 target.damage(9);
-                target.getWorld().spawnParticle(Particle.REDSTONE, target.getLocation().clone().add(0,1,0), 90, 0.5, 0.8, 0.5, new Particle.DustOptions(Color.GREEN, 1.0f));
+                target.getWorld().spawnParticle(Particle.DUST, target.getLocation().clone().add(0,1,0), 90, 0.5, 0.8, 0.5, new Particle.DustOptions(Color.GREEN, 1.0f));
                 player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 1));
             }
 
