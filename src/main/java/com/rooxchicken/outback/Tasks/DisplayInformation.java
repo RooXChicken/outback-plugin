@@ -38,6 +38,9 @@ public class DisplayInformation extends Task
         for(Player player : Bukkit.getOnlinePlayers())
         {
             player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.0);
+            player.getAttribute(Attribute.PLAYER_BLOCK_BREAK_SPEED).setBaseValue(1.0);
+            player.getAttribute(Attribute.PLAYER_ENTITY_INTERACTION_RANGE).setBaseValue(3.0);
+            player.getAttribute(Attribute.PLAYER_BLOCK_INTERACTION_RANGE).setBaseValue(4.5);
             String display = "";
             playerStonesMap.put(player, new ArrayList<ItemStack>());
             for(ItemStack item : player.getInventory())

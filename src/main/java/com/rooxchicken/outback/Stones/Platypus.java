@@ -119,7 +119,7 @@ public class Platypus extends Stone
         ItemStack item = event.getItem();
         if(item.getType().isEdible())
         {
-            event.getPlayer().setExhaustion(0);
+            event.getPlayer().setSaturation(20);
         }
     }
 

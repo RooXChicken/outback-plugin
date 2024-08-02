@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -58,7 +59,12 @@ public class Koala extends Stone
     public void playerTickLogic(Player player, ItemStack item)
     {
         if(getEssence(item) >= 10)
-            player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 21, 0));
+        {
+            player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.0 * 1.2);
+            player.getAttribute(Attribute.PLAYER_BLOCK_BREAK_SPEED).setBaseValue(1.0 * 1.2);
+            player.getAttribute(Attribute.PLAYER_ENTITY_INTERACTION_RANGE).setBaseValue(3.0 * 1.2);
+            player.getAttribute(Attribute.PLAYER_BLOCK_INTERACTION_RANGE).setBaseValue(4.5 * 1.2);
+        }
     }
 
     @EventHandler

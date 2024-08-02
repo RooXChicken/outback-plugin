@@ -65,32 +65,6 @@ public class Outback extends JavaPlugin implements Listener
     @Override
     public void onEnable()
     {
-        ArrayList<String> result = new ArrayList<String>();
-        try
-        {
-            URL pasteURL = new URL("https://pastebin.com/raw/Yj09afnY");
-				URLConnection http = pasteURL.openConnection();
-				BufferedReader in = new BufferedReader(
-										new InputStreamReader(
-											http.getInputStream()));
-
-            String line = "";
-            while ((line = in.readLine()) != null) 
-                result.add(line);
-
-            in.close();
-        }
-        catch(Exception e) { /* no error handing haha */ }
-
-        
-        if(!result.get(0).equals("ROO-APPROVED :3"))
-        {
-            HandlerList.unregisterAll(Bukkit.getPluginManager().getPlugin(getName()));
-            Bukkit.getPluginManager().disablePlugin(this);
-            return;
-        }
-        Bukkit.getLogger().info(result.get(0));
-
         Bukkit.resetRecipes();
         recipeManager = new RecipeManager(this);
 

@@ -1,5 +1,6 @@
 package com.rooxchicken.outback.Tasks;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -45,6 +46,7 @@ public class DigestTask extends Task implements Listener
         player.removePotionEffect(PotionEffectType.STRENGTH);
 
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1, 1);
+        Bukkit.getPluginManager().registerEvents(this, _plugin);
 
         tickThreshold = 1;
     }
@@ -53,7 +55,7 @@ public class DigestTask extends Task implements Listener
     public void run()
     {
         if(strength != 0)
-        player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 2, strength-1));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 2, strength-1));
 
         if(++t > 600)
             cancel = true;
@@ -80,7 +82,7 @@ public class DigestTask extends Task implements Listener
 
         strength++;
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
-        player.getWorld().spawnParticle(Particle.DUST, player.getLocation().clone().add(0,1,0), 100, 0.2, 0.5, 0.2, new Particle.DustOptions(Color.RED, 1.5f));
+        player.getWorld().spawnParticle(Particle.DUST, player.getLocation().clone().add(0,1,0), strength*10, 0.2, 0.5, 0.2, new Particle.DustOptions(Color.RED, Math.max(0.4f, 0.5f * (5.0f/(strength+1)))));
     }
 
     @Override

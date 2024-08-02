@@ -111,7 +111,7 @@ public class TasmanianDevil extends Stone
     @EventHandler
     public void carnivore(EntityDamageByEntityEvent event)
     {
-        if(!(event.getDamager() instanceof Player && event.getEntity() instanceof Player))
+        if(!(event.getDamager() instanceof Player))
             return;
 
         Entity entity = event.getEntity();

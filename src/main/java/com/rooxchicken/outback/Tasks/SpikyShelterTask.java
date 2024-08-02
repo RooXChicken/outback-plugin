@@ -30,20 +30,20 @@ public class SpikyShelterTask extends Task
         player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 200, 0));
         player.getWorld().playSound(player.getLocation(), Sound.BLOCK_CHERRY_LEAVES_BREAK, 1, 1);
 
+        for(int i = 0; i < 2; i++)
+        {
+            player.getWorld().setBlockData(player.getLocation().clone().add(1,i,0), Material.JUNGLE_LEAVES.createBlockData());
+            player.getWorld().setBlockData(player.getLocation().clone().add(1,i,1), Material.JUNGLE_LEAVES.createBlockData());
+            player.getWorld().setBlockData(player.getLocation().clone().add(0,i,1), Material.JUNGLE_LEAVES.createBlockData());
+            player.getWorld().setBlockData(player.getLocation().clone().add(0,i,0), Material.JUNGLE_LEAVES.createBlockData());
+        }
+
         tickThreshold = 1;
     }
 
     @Override
     public void run()
     {
-        for(Player p : Bukkit.getOnlinePlayers())
-        {
-            if(p != player)
-                p.spawnParticle(Particle.DUST, player.getLocation().clone().add(0,1,0), 40, 0.3, 0.6, 0.3, new Particle.DustOptions(Color.GREEN, 2f));
-            else
-                p.spawnParticle(Particle.DUST, player.getLocation().clone().add(0,1,0), 10, 0.3, 0.6, 0.3, new Particle.DustOptions(Color.GREEN, 1f));
-        }
-
         if(t % 15 == 0)
         {
             player.getWorld().playSound(player.getLocation(), Sound.BLOCK_CHERRY_LEAVES_BREAK, 1, 1);

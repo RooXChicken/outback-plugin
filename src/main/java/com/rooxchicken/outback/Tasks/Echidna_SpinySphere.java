@@ -37,16 +37,16 @@ public class Echidna_SpinySphere extends Task implements Listener
         sphere = new Sphere(new Color[] {Color.GRAY}, 10);
         player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 60, 1));
 
-        tickThreshold = 2;
+        tickThreshold = 1;
     }
 
     @Override
     public void run()
     {
-        if(++t > 54)
+        if(++t > 60)
             cancel = true;
 
-        sphere.run(player.getLocation(), 2, 20, 1, 0.1);
+        sphere.run(player.getLocation().clone().add(0,1,0), 1, 10, 1, 0.1);
     }
     
     @EventHandler
